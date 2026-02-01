@@ -16,14 +16,6 @@ function setTable(name, func, xmin, xmax, ymin, ymax)
    button[name]["ymax"] = ymax
 end
 
-function funcName()
-   print("You clicked buttonText")
-end
-
-function fillTable()
-   setTable("ButtonText", funcName, 5, 25, 4, 8)
-end
-
 function fill(text, color, bData)
    mon.setBackgroundColor(color)
    local yspot = math.floor((bData["ymin"] + bData["ymax"]) /2)
