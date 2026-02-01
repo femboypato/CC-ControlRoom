@@ -1,4 +1,5 @@
 os.loadAPI("lib/button")
+local monitor = peripheral.find("monitor")
 
 function getClick()
     local event, side, x, y = os.pullEvent("monitor_touch")
@@ -7,10 +8,10 @@ end
 
 function main()
     button.clearTable()
-    m.setBackgroundColor(colors.black)
-    m.clear()
-    m.setTextColor(colors.white)
-    m.setCursorPos(1,1)
+    monitor.setBackgroundColor(colors.black)
+    monitor.clear()
+    monitor.setTextColor(colors.white)
+    monitor.setCursorPos(1,1)
     button.label(7,1,"Reactor Control")
     button.screen()
 end
