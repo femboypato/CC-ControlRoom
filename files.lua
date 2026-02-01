@@ -5,6 +5,6 @@ files = {
     },
     {
         path = "program",
-        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/proram.lua"
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/program.lua"
     }
 }

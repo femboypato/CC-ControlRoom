@@ -2,7 +2,7 @@ function downloadFile(url, path)
     local remoteStream = http.get(url)
     local remoteFile = remoteStream.readAll()
     local localFileWrite = fs.open(path, "w")
-    if !fs.exists(path) then
+    if not fs.exists(path) then
         localFileWrite.write(remoteFile)
         print(path, " downloaded")
     else
@@ -16,7 +16,7 @@ function downloadFile(url, path)
     localFileWrite.close()
 end
 
-downloadFile("files", "files")
+downloadFile("https://raw.githubusercontent.com/femboypato/CC-ControlRoom/refs/heads/main/files.lua", "files")
 
 os.loadAPI("files")
 
