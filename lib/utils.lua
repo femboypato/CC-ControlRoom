@@ -1,5 +1,5 @@
 function getPeripheral(type, name)
-    local results = peripheral.find(type)
+    local results = { peripheral.find(type) }
     for _, p in pairs(results) do
         if peripheral.getName(p) == name then
             return p

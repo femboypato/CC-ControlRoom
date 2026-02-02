@@ -2,7 +2,7 @@ os.loadAPI("lib/button")
 os.loadAPI("lib/utils")
 os.loadAPI("lib/create_target")
 local monitor = peripheral.find("monitor")
-local testTarget = create_target.CreateTarget:new()
+local testTarget = create_target.CreateTarget:new("create_target_0", 1)
 
 function init()
     button.clearTable()

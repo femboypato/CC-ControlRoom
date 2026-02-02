@@ -1,4 +1,4 @@
-os.loadAPI("utils")
+os.loadAPI("lib/utils")
 
 CreateTarget = {
     name = nil,
@@ -7,11 +7,12 @@ CreateTarget = {
     data = {}
 }
 
-function CreateTarget:new(o, name)
+function CreateTarget:new(o, name, lines)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
     self.name = name
+    self.lines = lines
     self.target = utils.getPeripheral("create_target", name)
     return o
 end
