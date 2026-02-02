@@ -6,16 +6,16 @@ local testTarget = create_target.CreateTarget:new(nil, "create_target_0", 1)
 
 function init()
     button.clearTable()
+    button.label(7,1,"Reactor Control")
 end
 
 function screen()
     monitor.clear()
     monitor.setBackgroundColor(colors.black)
-    button.screen()
     monitor.setTextColor(colors.white)
+    button.screen()
     monitor.setCursorPos(1,1)
     testTarget:update()
-    button.label(7,1,"Reactor Control")
     button.label(7, 2, testTarget:getData(1))
 end
 

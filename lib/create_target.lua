@@ -19,7 +19,12 @@ end
 
 function CreateTarget:update()
     for i=1,self.lines do
-        self.data[i] = utils.trim(self.target.getLine(i))
+        local line = self.target.getLine(i)
+        if line == nil then
+            self.data[i] = "n/a"
+        else
+            self.data[i] = utils.trim(line)
+        end
     end
 end
 
