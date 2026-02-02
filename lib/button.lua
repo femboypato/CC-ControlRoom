@@ -75,6 +75,13 @@ function checkxy(x, y)
    return false
 end
 
+function clickEvent()
+   while true do
+      local myEvent={os.pullEvent("monitor_touch")}
+      checkxy(myEvent[3], myEvent[4])
+   end
+end
+
 function heading(text)
    w, h = mon.getSize()
    mon.setCursorPos((w-string.len(text))/2+1, 1)
