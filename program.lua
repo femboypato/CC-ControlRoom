@@ -17,10 +17,10 @@ function screen()
     monitor.drawHLine(2, 2, monitor.w - 2)
     monitor.drawHLine(2, monitor.h - 1, monitor.w - 2)
     monitor.drawVLine(2, 2, monitor.h - 1)
-    monitor.drawVLine(monitor.w - 2, 2, monitor.h - 2)
-    monitor.drawTextCenter(0, 0, 2, "Reactor Control")
+    monitor.drawVLine(monitor.w - 1, 2, monitor.h - 2)
+    monitor.drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
     monitor.drawText(4, 4, "Stress Units: "..testTarget:getLine(1))
-    monitor.drawText(6, 4, "Status: "..testRelay:getInputStr("top"))
+    monitor.drawText(4, 6, "Status: "..testRelay:getInputStr("top"))
 end
 
 function mainLoop()
