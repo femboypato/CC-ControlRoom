@@ -81,14 +81,3 @@ function clickEvent()
       checkxy(myEvent[3], myEvent[4])
    end
 end
-
-function heading(text)
-   w, h = mon.getSize()
-   mon.setCursorPos((w-string.len(text))/2+1, 1)
-   mon.write(text)
-end
-
-function label(w, h, text)
-   mon.setCursorPos(w, h)
-   mon.write(text)
-end

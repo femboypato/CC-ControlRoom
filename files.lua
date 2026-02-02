@@ -14,5 +14,13 @@ files = {
     {
         path = "lib/create_target",
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/create_target.lua"
+    },
+    {
+        path = "lib/monitor",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/monitor.lua"
+    },
+    {
+        path = "lib/redstone_relay",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/redstone_relay.lua"
     }
 }

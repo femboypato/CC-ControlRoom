@@ -1,33 +1,27 @@
 os.loadAPI("lib/utils")
 
 CreateTarget = {
-    name = nil,
+    id = nil,
     target = nil,
     lines = 0,
     data = {}
 }
 
-function CreateTarget:new(o, name, lines)
+function CreateTarget:new(o, id, lines)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
-    self.name = name
+    self.name = id
     self.lines = lines
-    self.target = utils.getPeripheral("create_target", name)
+    self.target = utils.getPeripheral("create_target", "create_target_"..id)
     return o
 end
 
-function CreateTarget:update()
-    for i=1,self.lines do
-        local line = self.target.getLine(i)
-        if line == nil then
-            self.data[i] = "n/a"
-        else
-            self.data[i] = utils.trim(line)
-        end
+function CreateTarget:getLine(i)
+    local line = self.target.getLine(i)
+    if line == nil then
+        return "n/a"
+    else
+        return utils.trim(line)
     end
-end
-
-function CreateTarget:getData(line)
-    return self.data[line]
 end
