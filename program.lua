@@ -10,6 +10,8 @@ function init()
     button.clearTable()
     monitor.clear()
     monitor.drawTextCenter(0, 0, monitor.h / 2 - 1, "Loading...")
+    print("Created module 1 with target: "..module1:getTarget():getId())
+    print("Created module 2 with target: "..module2:getTarget():getId())
 
     -- cache initial data
     for i=1,20 do

@@ -16,6 +16,10 @@ function ReactorModule:new(targetId, relayId)
     return o
 end
 
+function ReactorModule:getTarget()
+    return self.target
+end
+
 function ReactorModule:refresh()
     self.target:refresh(2)
 end

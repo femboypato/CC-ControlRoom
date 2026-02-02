@@ -10,10 +10,14 @@ function CreateTarget:new(id)
     local o =  {}
     setmetatable(o, self)
     self.__index = self
-    self.name = id
+    self.id = id
     self.target = utils.getPeripheral("create_target", "create_target_"..id)
     self.data = {}
     return o
+end
+
+function CreateTarget:getId()
+    return peripheral.getName(self.target)
 end
 
 function CreateTarget:getLine(i)
