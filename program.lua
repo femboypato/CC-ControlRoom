@@ -3,15 +3,15 @@ os.loadAPI("lib/utils")
 os.loadAPI("lib/reactor_module")
 os.loadAPI("lib/monitor")
 -- monitor size 71 x 26
-local module1 = reactor_module.ReactorModule:new(1, 1)
-local module2 = reactor_module.ReactorModule:new(2, 2)
+local module1 = reactor_module.ReactorModule:new("Module 1", 1, 1)
+local module2 = reactor_module.ReactorModule:new("Module 2", 2, 2)
 
 function init()
     button.clearTable()
     monitor.clear()
     monitor.drawTextCenter(0, 0, monitor.h / 2 - 1, "Loading...")
-    print("Created module 1 with target: "..module1:getTarget():getId())
-    print("Created module 2 with target: "..module2:getTarget():getId())
+    print("Created "..module1:getName().." with target: "..module1:getTarget():getId())
+    print("Created "..module2:getName().." with target: "..module2:getTarget():getId())
 
     -- cache initial data
     for i=1,20 do

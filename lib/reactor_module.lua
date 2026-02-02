@@ -3,17 +3,23 @@ os.loadAPI("lib/redstone_relay")
 os.loadAPI("lib/utils")
 
 ReactorModule = {
+    name = "",
     target = nil,
     relay = nil
 }
 
-function ReactorModule:new(targetId, relayId)
+function ReactorModule:new(name, targetId, relayId)
     local o = {}
     setmetatable(o, self)
     self.__index = self
+    self.name = name
     self.target = create_target.CreateTarget:new(targetId)
     self.relay = redstone_relay.RedstoneRelay:new(relayId)
     return o
+end
+
+function ReactorModule:getName()
+    return self.name
 end
 
 function ReactorModule:getTarget()
