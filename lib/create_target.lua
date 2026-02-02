@@ -6,13 +6,13 @@ CreateTarget = {
     data = {} -- cache data because of https://github.com/tweaked-programs/cccbridge/issues/116
 }
 
-function CreateTarget:new(o, id)
-    o = o or {}
+function CreateTarget:new(id)
+    local o = {}
     setmetatable(o, self)
     self.__index = self
-    self.id = id
-    self.target = utils.getPeripheral("create_target", "create_target_"..id)
-    self.data = {}
+    o.id = id
+    o.target = utils.getPeripheral("create_target", "create_target_"..id)
+    o.data = {}
     return o
 end
 

@@ -5,12 +5,12 @@ RedstoneRelay = {
     relay = nil,
 }
 
-function RedstoneRelay:new(o, id)
-    o = o or {}
+function RedstoneRelay:new(id)
+    local o = {}
     setmetatable(o, self)
     self.__index = self
-    self.name = id
-    self.target = utils.getPeripheral("redstone_relay", "redstone_relay_"..id)
+    o.name = id
+    o.target = utils.getPeripheral("redstone_relay", "redstone_relay_"..id)
     return o
 end
 
