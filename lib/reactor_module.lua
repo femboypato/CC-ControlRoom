@@ -2,6 +2,9 @@ os.loadAPI("lib/create_target")
 os.loadAPI("lib/redstone_relay")
 os.loadAPI("lib/utils")
 
+TOTAL_LINE_INDEX = 2
+USAGE_LINE_INDEX = 1
+
 ReactorModule = {
     name = "",
     target = nil,
@@ -31,19 +34,19 @@ function ReactorModule:refresh()
 end
 
 function ReactorModule:getTotal()
-    return utils.parseSU(self.target:getLine(1))
+    return utils.parseSU(self.target:getLine(TOTAL_LINE_INDEX))
 end
 
 function ReactorModule:getRawTotal()
-    return self.target:getLine(1)
+    return self.target:getLine(TOTAL_LINE_INDEX)
 end
 
 function ReactorModule:getUsage()
-    return utils.parseSU(self.target:getLine(2))
+    return utils.parseSU(self.target:getLine(USAGE_LINE_INDEX))
 end
 
 function ReactorModule:getRawUsage()
-    return self.target:getLine(2)
+    return self.target:getLine(USAGE_LINE_INDEX)
 end
 
 function ReactorModule:getRemaining()
