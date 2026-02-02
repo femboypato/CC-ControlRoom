@@ -3,8 +3,8 @@ os.loadAPI("lib/utils")
 os.loadAPI("lib/reactor_module")
 os.loadAPI("lib/monitor")
 -- monitor size 71 x 26
-local module1 = reactor_module.ReactorModule:new("Module 1", 1, 1)
-local module2 = reactor_module.ReactorModule:new("Module 2", 2, 2)
+local module1 = reactor_module.ReactorModule:new(nil, "Module 1", 1, 1)
+local module2 = reactor_module.ReactorModule:new(nil, "Module 2", 2, 2)
 
 function init()
     button.clearTable()

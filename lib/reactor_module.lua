@@ -8,13 +8,13 @@ ReactorModule = {
     relay = nil
 }
 
-function ReactorModule:new(name, targetId, relayId)
-    local o = {}
+function ReactorModule:new(o, name, targetId, relayId)
+    o = o or {}
     setmetatable(o, self)
     self.__index = self
     self.name = name
-    self.target = create_target.CreateTarget:new(targetId)
-    self.relay = redstone_relay.RedstoneRelay:new(relayId)
+    self.target = create_target.CreateTarget:new(nil, targetId)
+    self.relay = redstone_relay.RedstoneRelay:new(nil, relayId)
     return o
 end
 

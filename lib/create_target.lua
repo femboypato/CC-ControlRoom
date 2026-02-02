@@ -6,8 +6,8 @@ CreateTarget = {
     data = {} -- cache data because of https://github.com/tweaked-programs/cccbridge/issues/116
 }
 
-function CreateTarget:new(id)
-    local o =  {}
+function CreateTarget:new(o, id)
+    o = o or {}
     setmetatable(o, self)
     self.__index = self
     self.id = id
