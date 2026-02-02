@@ -2,7 +2,8 @@ os.loadAPI("lib/utils")
 
 CreateTarget = {
     id = nil,
-    target = nil
+    target = nil,
+    data = {} -- cache data because of https://github.com/tweaked-programs/cccbridge/issues/116
 }
 
 function CreateTarget:new(id)
@@ -11,6 +12,7 @@ function CreateTarget:new(id)
     self.__index = self
     self.name = id
     self.target = utils.getPeripheral("create_target", "create_target_"..id)
+    self.data = {}
     return o
 end
 
@@ -18,11 +20,22 @@ function CreateTarget:getLine(i)
     if self.target == nil then
         return "n/a"
     end
-    
+
     local line = self.target.getLine(i)
     if line == nil then
         return "n/a"
-    else
-        return utils.trim(line)
+    end
+
+    if utils.trim(line) == "" and not self.data[i] == nil then
+        return self.data[i]
+    end
+
+    self.data[i] = line
+    return line
+end
+
+function CreateTarget:refresh(lines)
+    for i=1,lines do
+        self:getLine(i)
     end
 end

@@ -16,6 +16,10 @@ function ReactorModule:new(targetId, relayId)
     return o
 end
 
+function ReactorModule:refresh()
+    self.target:refresh(2)
+end
+
 function ReactorModule:getTotal()
     return utils.parseSU(self.target:getLine(1))
 end

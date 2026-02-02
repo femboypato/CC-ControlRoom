@@ -8,6 +8,16 @@ local module2 = reactor_module.ReactorModule:new(2, 2)
 
 function init()
     button.clearTable()
+    monitor.clear()
+    monitor.drawTextCenter(0, 0, monitor.h / 2 - 1, "Loading...")
+
+    -- cache initial data
+    for i=1,20 do
+        monitor.drawProgressBar(monitor.w / 4, monitor.h / 2, monitor.w / 2, i / 20)
+        module1:refresh()
+        module2:refresh()
+        sleep(0.2)
+    end
 end
 
 function screen()
@@ -43,7 +53,7 @@ function mainLoop()
 
     while true do
         screen()
-        sleep(2)
+        sleep(0.5)
     end
 end
 

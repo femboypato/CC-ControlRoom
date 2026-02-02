@@ -1,42 +1,32 @@
 local mon = peripheral.find("monitor")
 w, h = mon.getSize()
 
-function heading(text)
-   mon.setCursorPos((w-string.len(text))/2+1, 1)
-   mon.write(text)
-end
-
-function label(w, h, text)
-   mon.setCursorPos(w, h)
-   mon.write(text)
-end
-
 function clear()
     mon.clear()
     mon.setBackgroundColor(colors.black)
     mon.setTextColor(colors.white)
 end
 
-function drawText(x, y, text, text_color, bg_color)
-    text_color = text_color or colors.white
-    bg_color = bg_color or colors.black
-    mon.setBackgroundColor(bg_color)
-    mon.setTextColor(text_color)
+function drawText(x, y, text, textColor, bgColor)
+    textColor = textColor or colors.white
+    bgColor = bgColor or colors.black
+    mon.setBackgroundColor(bgColor)
+    mon.setTextColor(textColor)
     mon.setCursorPos(x,y)
     mon.write(text)
 end
 
-function drawTextLeft(x, y, text, text_color, bg_color)
-    drawText(x, y, text, text_color, bg_color)
+function drawTextLeft(x, y, text, textColor, bgColor)
+    drawText(x, y, text, textColor, bgColor)
 end
 
-function drawTextCenter(paddingLeft, paddingRight, y, text, text_color, bg_color)
+function drawTextCenter(paddingLeft, paddingRight, y, text, textColor, bgColor)
     local x = ((w-string.len(text))/2) + paddingLeft - paddingRight
-    drawText(x, y, text, text_color, bg_color)
+    drawText(x, y, text, textColor, bgColor)
 end
 
-function drawTextRight(padding, y, text, text_color, bg_color)
-    drawText(w-string.len(tostring(text))-padding, y, text, text_color, bg_color)
+function drawTextRight(padding, y, text, textColor, bgColor)
+    drawText(w-string.len(tostring(text))-padding, y, text, textColor, bgColor)
 end
 
 function drawHLine(x, y, length, color)
@@ -61,4 +51,11 @@ function drawVLine(x, y, length, color)
         mon.setCursorPos(x, i)
         mon.write(" ")
     end
+end
+
+function drawProgressBar(x, y, length, percent, barColor, bgColor)
+    barColor = barColor or colors.blue
+    bgColor = bgColor or colors.white
+    drawHLine(x, y, length, bgColor)
+    drawHLine(x, y, percent * length, barColor)
 end

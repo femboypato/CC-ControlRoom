@@ -27,6 +27,5 @@ end
 
 print("Finished")
 print("Starting Program")
-sleep(5)
 
 shell.run("program")
