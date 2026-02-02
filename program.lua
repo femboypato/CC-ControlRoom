@@ -9,18 +9,18 @@ local testRelay = redstone_relay.RedstoneRelay:new(nil, "2", 1)
 
 function init()
     button.clearTable()
-    button.label(7,1,"Reactor Control")
 end
 
 function screen()
     button.screen()
-    monitor.drawHLine(2, 2, monitor.w - 4)
-    monitor.drawHLine(2, monitor.h - 2, monitor.w - 4)
-    monitor.drawVLine(2, 2, monitor.h - 4)
-    monitor.drawVLine(monitor.w - 2, 2, monitor.h - 4)
+    monitor.clear()
+    monitor.drawHLine(2, 2, monitor.w - 2)
+    monitor.drawHLine(2, monitor.h - 1, monitor.w - 2)
+    monitor.drawVLine(2, 2, monitor.h - 1)
+    monitor.drawVLine(monitor.w - 2, 2, monitor.h - 2)
     monitor.drawTextCenter(0, 0, 2, "Reactor Control")
     monitor.drawText(4, 4, "Stress Units: "..testTarget:getLine(1))
-    monitor.drawText(6, 4, "Status: "..testRelay:getInput("top"))
+    monitor.drawText(6, 4, "Status: "..testRelay:getInputStr("top"))
 end
 
 function mainLoop()
@@ -32,4 +32,4 @@ function mainLoop()
     end
 end
 
-parallel.waitForAny(screen, button.clickEvent)
+parallel.waitForAny(mainLoop, button.clickEvent)
