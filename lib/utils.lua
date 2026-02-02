@@ -26,3 +26,10 @@ function parseSU(str)
 
     return tonumber(num)
 end
+
+function formatPercent(num)
+    if num == nil then
+        return "N/A"
+    end
+    return math.floor(num*100).."%"
+end

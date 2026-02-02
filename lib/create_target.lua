@@ -25,8 +25,9 @@ function CreateTarget:getLine(i)
     if line == nil then
         return "n/a"
     end
+    line = utils.trim(line)
 
-    if utils.trim(line) == "" and not self.data[i] == nil then
+    if line == "" and not self.data[i] == nil then
         return self.data[i]
     end
 

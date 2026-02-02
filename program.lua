@@ -34,7 +34,7 @@ function screen()
         .."su Usage: "
         ..module1:getRawUsage()
         .. "su ("
-        ..(module1:getUsagePercent()*100)
+        ..utils.formatPercent(module1:getUsagePercent())
         ..")"
     )
 
@@ -43,7 +43,7 @@ function screen()
         .."su Usage: "
         ..module2:getRawUsage()
         .. "su ("
-        ..(module2:getUsagePercent()*100)
+        ..utils.formatPercent(module2:getUsagePercent())
         ..")"
     )
 end
