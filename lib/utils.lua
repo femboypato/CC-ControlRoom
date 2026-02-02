@@ -15,13 +15,13 @@ end
 
 function parseSU(str)
     if str == nil then
-        return nil
+        return -1
     end
 
     num = string.gsub(str, "%D", "")
 
     if num == "" then
-        return nil
+        return -2
     end
 
     return tonumber(num)
