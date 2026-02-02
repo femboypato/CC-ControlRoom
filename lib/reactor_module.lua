@@ -20,8 +20,16 @@ function ReactorModule:getTotal()
     return utils.parseSU(self.target:getLine(1))
 end
 
+function ReactorModule:getRawTotal()
+    return self.target:getLine(1)
+end
+
 function ReactorModule:getUsage()
-    return utils.parseSU(self.target:getLine(1))
+    return utils.parseSU(self.target:getLine(2))
+end
+
+function ReactorModule:getRawUsage()
+    return self.target:getLine(2)
 end
 
 function ReactorModule:getRemaining()

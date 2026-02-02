@@ -20,18 +20,18 @@ function screen()
     monitor.drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
     
     monitor.drawText(4, 4, "Module 1 - Generation: "
-        ..module1:getTotal()
+        ..module1:getRawTotal()
         .."su Usage: "
-        ..module1:getUsage()
+        ..module1:getRawUsage()
         .. "su ("
         ..(module1:getUsagePercent()*100)
         ..")"
     )
 
     monitor.drawText(4, 5, "Module 2 - Generation: "
-        ..module2:getTotal()
+        ..module2:getRawTotal()
         .."su Usage: "
-        ..module2:getUsage()
+        ..module2:getRawUsage()
         .. "su ("
         ..(module2:getUsagePercent()*100)
         ..")"
