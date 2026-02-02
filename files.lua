@@ -22,5 +22,9 @@ files = {
     {
         path = "lib/redstone_relay",
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/redstone_relay.lua"
+    },
+    {
+        path = "lib/reactor_module",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/reactor_module.lua"
     }
 }

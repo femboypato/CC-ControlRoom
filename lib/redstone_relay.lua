@@ -5,8 +5,8 @@ RedstoneRelay = {
     relay = nil,
 }
 
-function RedstoneRelay:new(o, id)
-    o = o or {}
+function RedstoneRelay:new(id)
+    local o = {}
     setmetatable(o, self)
     self.__index = self
     self.name = id

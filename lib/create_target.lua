@@ -2,17 +2,14 @@ os.loadAPI("lib/utils")
 
 CreateTarget = {
     id = nil,
-    target = nil,
-    lines = 0,
-    data = {}
+    target = nil
 }
 
-function CreateTarget:new(o, id, lines)
-    o = o or {}
+function CreateTarget:new(id)
+    local o = {}
     setmetatable(o, self)
     self.__index = self
     self.name = id
-    self.lines = lines
     self.target = utils.getPeripheral("create_target", "create_target_"..id)
     return o
 end
