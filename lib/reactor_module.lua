@@ -17,16 +17,16 @@ function ReactorModule:new(targetId, relayId)
 end
 
 function ReactorModule:getTotal()
-    return utils.parseSU(self.target.getLine(1))
+    return utils.parseSU(self.target:getLine(1))
 end
 
 function ReactorModule:getUsage()
-    return utils.parseSU(self.target.getLine(1))
+    return utils.parseSU(self.target:getLine(1))
 end
 
 function ReactorModule:getRemaining()
-    total = self.getTotal(self)
-    usage = self.getUsage(self)
+    total = self:getTotal()
+    usage = self:getUsage()
     if total == nil or usage == nil then
         return nil
     end
@@ -35,8 +35,8 @@ function ReactorModule:getRemaining()
 end
 
 function ReactorModule:getUsagePercent()
-    total = self.getTotal(self)
-    usage = self.getUsage(self)
+    total = self:getTotal()
+    usage = self:getUsage()
     if total == nil or usage == nil then
         return nil
     end

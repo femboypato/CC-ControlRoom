@@ -6,7 +6,7 @@ CreateTarget = {
 }
 
 function CreateTarget:new(id)
-    local o = {}
+    local o =  {}
     setmetatable(o, self)
     self.__index = self
     self.name = id
