@@ -18,6 +18,10 @@ function CreateTarget:new(o, id, lines)
 end
 
 function CreateTarget:getLine(i)
+    if self.target == nil then
+        return "n/a"
+    end
+    
     local line = self.target.getLine(i)
     if line == nil then
         return "n/a"
