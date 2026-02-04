@@ -45,12 +45,12 @@ function Monitor:drawTextLeft(x, y, text, textColor, bgColor)
 end
 
 function Monitor:drawTextCenter(paddingLeft, paddingRight, y, text, textColor, bgColor)
-    local x = ((w-string.len(text))/2) + paddingLeft - paddingRight
+    local x = ((self.w-string.len(text))/2) + paddingLeft - paddingRight
     self:drawText(x, y, text, textColor, bgColor)
 end
 
 function Monitor:drawTextRight(padding, y, text, textColor, bgColor)
-    self:drawText(w-string.len(tostring(text))-padding, y, text, textColor, bgColor)
+    self:drawText(self.w-string.len(tostring(text))-padding, y, text, textColor, bgColor)
 end
 
 function Monitor:drawHLine(x, y, length, color)
