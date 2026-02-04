@@ -11,7 +11,7 @@ function Monitor:new(id)
     setmetatable(o, self)
     self.__index = self
     o.mon = utils.getPeripheral("monitor", "monitor_"..id)
-    local w, h = mon.getSize()
+    local w, h = o.mon.getSize()
     o.w = w
     o.h = h
     return o
