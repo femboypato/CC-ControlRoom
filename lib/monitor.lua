@@ -22,7 +22,7 @@ function Monitor:getW()
 end
 
 function Monitor:getH()
-    return self.g
+    return self.h
 end
 
 function Monitor:clear()
