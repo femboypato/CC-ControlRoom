@@ -75,7 +75,6 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     local boxColor = colorMap[self:getStatus()] or colors.black
 
     -- draw box
-    monitor.setBackgroundColor(boxColor)
     for i = 0, height - 1 do
         monitor:drawText(x, y + i, string.rep(" ", width), boxColor)
     end
