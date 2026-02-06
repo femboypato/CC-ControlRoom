@@ -79,6 +79,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     local boxColor = colorMap[self:getStatus()] or colors.cyan
     local statusText = self:getStatus() or "?"
     local usageText = string.format("%d%%", math.floor((module:getUsagePercent() or 0) * 100))
+    local rawUsage = module:getUsage() or 0
 
     -- medidas
     local boxHeight = math.floor(height - 2)
@@ -87,9 +88,9 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
     
     -- status display
-    monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor)
+    monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor, colors.black, true)
 
     -- Status & usage text
     monitor:drawText(x + math.floor((width - #statusText) / 2), y + 1 + math.floor((boxHeight - 2) / 2), statusText, colors.white)
-    monitor:drawText(x + 1, y + boxHeight + 2, usageText, colors.white)
+    monitor:drawText(x + 1, y + boxHeight + 2, rawUsage, colors.white)
 end
