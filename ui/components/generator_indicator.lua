@@ -75,7 +75,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
 
     local boxColor = colorMap[self:getStatus()] or colors.cyan
-    local statusText = statusTextMap[self:getStatus()] or "UNKNOWN"
+    local statusText = STATUS[self:getStatus()] or "UNKNOWN"
 
     -- draw box
     for i = 0, height - 1 do
