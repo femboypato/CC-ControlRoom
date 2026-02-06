@@ -42,8 +42,8 @@ function GeneratorIndicator:getUsage()
 end
 
 function GeneratorIndicator:setUsage(usage)
-    if usage then
-        self.usage = math.max(0, math.min(1, usage))
+    if usage and usage >= 0 and usage <= 1 then
+        self.usage = usage
     else
         self.usage = 0
     end
