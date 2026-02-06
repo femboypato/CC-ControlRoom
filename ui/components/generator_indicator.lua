@@ -2,7 +2,8 @@ local STATUS = {
     OFF = "OFF",
     ON = "ON",
     IDLE = "IDLE",
-    ERROR = "ERROR"
+    ERROR = "ERROR",
+    UNKNOWN = "?"
 }
 
 local colorMap = {
@@ -77,6 +78,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     -- info
     local boxColor = colorMap[self:getStatus()] or colors.cyan
     local statusText = STATUS[self:getStatus()] or "UNKNOWN"
+    local usageText = module:getUsagePercent()
 
     -- medidas
     local boxHeight = math.floor(height - 2)
@@ -85,10 +87,9 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
     
     -- status display
-    monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor, colors.white, true)
+    monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor)
 
     -- Status & usage text
     monitor:drawText(x + math.floor((width - #statusText) / 2), y + 1 + math.floor((boxHeight - 2) / 2), statusText, colors.white)
-    local usageText = string.format("Usage: %d%%", math.floor((module:getUsagePercent() or 0) * 100))
     monitor:drawText(x + 1, y + boxHeight + 2, usageText, colors.white)
 end
