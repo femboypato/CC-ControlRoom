@@ -37,7 +37,7 @@ function screen()
     monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
     
     local GeneratorIndicator1 = generator_indicator.GeneratorIndicator:new()
-    GeneratorIndicator1:draw(monitor1, 6, 4, 20, 15, module1)
+    GeneratorIndicator1:draw(monitor1, 6, 4, 8, 8, module1)
     -- monitor1:drawText(4, 4, "Module 1 - Generation: "
     --     ..module1:getRawTotal()
     --     .."su Usage: "

@@ -77,6 +77,26 @@ function Monitor:drawVLine(x, y, length, color)
     end
 end
 
+function Monitor:drawBox(x, y, width, height, color, bgColor, hasOutline)
+    color = color or colors.white
+    bgColor = bgColor or colors.black
+    hasOutline = hasOutline or false
+
+    -- fill
+    for i = 0, height - 1 do
+        self:drawHLine(x, y + i, width, bgColor)
+    end
+
+    -- outline (if enabled)
+    if hasOutline then
+        self: drawHLine(x, y, width, color) -- top
+        self: drawHLine(x, y + height - 1, width, color) -- bottom
+        self: drawVLine(x, y, height, color) -- left
+        self: drawVLine(x + width - 1, y, height, color) -- right
+    end
+end
+
+
 function Monitor:drawProgressBar(x, y, length, percent, barColor, bgColor)
     barColor = barColor or colors.blue
     bgColor = bgColor or colors.white

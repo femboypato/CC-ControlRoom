@@ -67,16 +67,16 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
 
     local colorMap = {
-        [self.STATUS.IDLE] = colors.gray,
+        [self.STATUS.IDLE] = colors.orange,
         [self.STATUS.ON] = colors.cyan,
-        [self.STATUS.OFF] = colors.orange,
+        [self.STATUS.OFF] = colors.gray,
         [self.STATUS.ERROR] = colors.red
     }
     local boxColor = colorMap[self:getStatus()] or colors.black
 
     -- draw box
     for i = 0, height - 1 do
-        monitor:drawText(x, y + i, string.rep(" ", width), boxColor)
+        monitor:drawBox(x, y + i, width, 1, boxColor)
     end
 
     -- module name
