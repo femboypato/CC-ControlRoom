@@ -74,20 +74,26 @@ end
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
 
+    -- info
     local boxColor = colorMap[self:getStatus()] or colors.cyan
     local statusText = STATUS[self:getStatus()] or "UNKNOWN"
 
-    -- draw box
-    for i = 0, height - 1 do
-        monitor:drawBox(x, y + i, width, 1, colors.white, boxColor, true)
-    end
+    -- medidas
+    local leftWidth = math.floor(width / 2)
+    local rightWidth = width - leftWidth
+    local dividerX = x + leftWidth
 
     -- module name
     monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
-    -- status text
-    monitor:drawText(x + math.floor((width - #statusText) / 2), y + 1, statusText, colors.white)
+    
+    -- divider
+    monitor:drawVLine(dividerX, y + 1, y + height - 1, colors.black)
 
-    -- module usage
+    -- LEFT: status box
+    monitor:drawBox(x + 1, y + 1, leftWidth - 2, height - 3, boxColor, colors.white, true)
+
+    -- RIGHT: status & usage
     local usageText = string.format("Usage: %d%%", math.floor((module:getUsagePercent() or 0) * 100))
-    monitor:drawText(x + math.floor((width - #usageText) / 2), y + height - 1, usageText, colors.white)
+    monitor:drawText(dividerX + 2, y + 2, "Status: " .. statusText, colors.white)
+    monitor:drawText(dividerX + 2, y + 4, usageText, colors.white)
 end

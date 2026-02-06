@@ -89,10 +89,10 @@ function Monitor:drawBox(x, y, width, height, color, bgColor, hasOutline)
 
     -- outline (if enabled)
     if hasOutline then
-        self: drawHLine(x, y, width, color) -- top
-        self: drawHLine(x, y + height - 1, width, color) -- bottom
-        self: drawVLine(x, y, height, color) -- left
-        self: drawVLine(x + width - 1, y, height, color) -- right
+        self:drawHLine(x, y, width, color) -- top
+        self:drawHLine(x, y + height - 1, width, color) -- bottom
+        self:drawVLine(x, y, height - 1, color) -- left
+        self:drawVLine(x + width - 1, y, y + height - 1, color) -- right
     end
 end
 

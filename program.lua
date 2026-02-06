@@ -35,26 +35,33 @@ function screen()
     monitor1:drawVLine(2, 2, monitor1:getH() - 1)
     monitor1:drawVLine(monitor1:getW() - 1, 2, monitor1:getH() - 2)
     monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
-    
-    local GeneratorIndicator1 = generator_indicator.GeneratorIndicator:new()
-    GeneratorIndicator1:draw(monitor1, 6, 4, 8, 8, module1)
-    -- monitor1:drawText(4, 4, "Module 1 - Generation: "
-    --     ..module1:getRawTotal()
-    --     .."su Usage: "
-    --     ..module1:getRawUsage()
-    --     .. " ("
-    --     ..utils.formatPercent(module1:getUsagePercent())
-    --     ..")"
-    -- )
 
-    monitor1:drawText(4, 5, "Module 2 - Generation: "
-        ..module2:getRawTotal()
-        .."su Usage: "
-        ..module2:getRawUsage()
-        .. " ("
-        ..utils.formatPercent(module2:getUsagePercent())
-        ..")"
-    )
+    -- modules
+    local modules = {}
+    for i = 1, 14 do
+        modules[i] = reactor_module.ReactorModule:new("Module " .. i, i, i)
+    end
+
+    -- Indicators config
+    local topY = 4 -- top row starts at 4
+    local bottomY = 15 -- bottom row starts at 15
+    local indicatorWidth = 10
+    local indicatorHeight = 6
+    local spacing = 1
+
+    -- tops
+    for i = 1, 7 do
+        local xPos = 4 + (i - 1) * (indicatorWidth + spacing)
+        local indicator = generator_indicator.GeneratorIndicator:new()
+        indicator:draw(monitor1, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
+    end
+
+    -- bottoms
+    for i = 8, 14 do
+        local xPos = 4 + (i - 8) * (indicatorWidth + spacing)
+        local indicator = generator_indicator.GeneratorIndicator:new()
+        indicator:draw(monitor1, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
+    end
 
     monitor2:clear()
     monitor2:drawHLine(2, 2, monitor1:getW() - 2)
