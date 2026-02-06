@@ -77,19 +77,15 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     -- draw box
     monitor.setBackgroundColor(boxColor)
     for i = 0, height - 1 do
-        monitor.setCursorPos(x, y + i)
-        monitor.write(string.rep(" ", width))
+        monitor:drawText(x, y + i, string.rep(" ", width), boxColor)
     end
 
     -- module name
-    monitor.setCursorPos(x + math.floor((width - #self:getModuleName()) / 2), y)
-    monitor.setTextColor(colors.white)
-    monitor.write(self:getModuleName())
+    monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
 
     -- module usage
     local usageText = string.format("Usage: %d%%", math.floor((self:getUsagePercent() or 0) * 100))
-    monitor.setCursorPos(x + math.floor((width - #usageText) / 2), y + height - 1)
-    monitor.write(usageText)
+    monitor:drawText(x + math.floor((width - #usageText) / 2), y + height - 1, usageText, colors.white)
 
     -- reset
     monitor.setBackgroundColor(colors.black)
