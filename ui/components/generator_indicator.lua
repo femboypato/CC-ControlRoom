@@ -1,5 +1,5 @@
 GeneratorIndicator = {
-    status = {
+    STATUS = {
         IDLE = 0,
         ON = 1,
         OFF = 3,
@@ -13,7 +13,7 @@ function GeneratorIndicator:new()
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    o.status = 0
+    o.STATUS = self.STATUS.OFF
     o.usage = nil
     o.module_name = ""
     return o
@@ -21,11 +21,11 @@ end
 
 ------------ getters and setters ------------
 function GeneratorIndicator:getStatus()
-    return self.status
+    return self.STATUS
 end
 
 function GeneratorIndicator:setStatus(status)
-    self.status = status
+    self.STATUS = status
 end
 
 function GeneratorIndicator:getUsage()
@@ -47,13 +47,13 @@ end
 ------------ logic functions ------------
 function GeneratorIndicator:calculateStatus(module)
     if module:getTotal() == nil or module:getUsage() == nil then
-        return self.status.ERROR
+        return self.STATUS.ERROR
     elseif module:getUsage() == 0 then
-        return self.status.IDLE
+        return self.STATUS.IDLE
     elseif module:getUsage() == module:getTotal() then
-        return self.status.ON
+        return self.STATUS.ON
     else
-        return self.status.OFF
+        return self.STATUS.OFF
     end
 end
 
@@ -67,10 +67,10 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
 
     local colorMap = {
-        [self.status.IDLE] = colors.gray,
-        [self.status.ON] = colors.cyan,
-        [self.status.OFF] = colors.orange,
-        [self.status.ERROR] = colors.red
+        [self.STATUS.IDLE] = colors.gray,
+        [self.STATUS.ON] = colors.cyan,
+        [self.STATUS.OFF] = colors.orange,
+        [self.STATUS.ERROR] = colors.red
     }
     local boxColor = colorMap[self:getStatus()] or colors.black
     
