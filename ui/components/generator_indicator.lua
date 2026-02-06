@@ -43,7 +43,7 @@ end
 
 function GeneratorIndicator:setUsage(usage)
     if usage and usage >= 0 and usage <= 1 then
-        self.usage = usage
+        self.usage = 1 - usage
     else
         self.usage = 0
     end
