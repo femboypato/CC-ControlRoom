@@ -87,7 +87,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor.write(self:getModuleName())
 
     -- module usage
-    local usageText = string.format("Usage: %d%%", math.floor((self:getUsage() or 0) * 100))
+    local usageText = string.format("Usage: %d%%", math.floor((self:getUsagePercent() or 0) * 100))
     monitor.setCursorPos(x + math.floor((width - #usageText) / 2), y + height - 1)
     monitor.write(usageText)
 

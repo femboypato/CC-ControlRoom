@@ -26,5 +26,9 @@ files = {
     {
         path = "lib/reactor_module",
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/reactor_module.lua"
+    },
+    {
+        path= "ui/components/generator_indicator",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/components/generator_indicator.lua"
     }
 }
