@@ -45,9 +45,9 @@ function screen()
     -- Indicators config
     local topY = 4 -- top row starts at 4
     local bottomY = 15 -- bottom row starts at 15
-    local indicatorWidth = 10
-    local indicatorHeight = 6
-    local spacing = 1
+    local indicatorWidth = 9
+    local indicatorHeight = 5
+    local spacing = 0.5
 
     -- tops
     for i = 1, 7 do
