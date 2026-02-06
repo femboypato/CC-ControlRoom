@@ -94,7 +94,6 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor, colors.white, true)
 
     -- Status & usage text
-    monitor:drawText(x + math.floor((width - #statusText) / 2), y + 1 + math.floor((boxHeight - 2) / 2), statusText,
-    colors.white)
+    monitor:drawText(x + math.floor((width - #statusText) / 2), y + 1 + math.floor((boxHeight - 2) / 2), statusText, colors.white)
     monitor:drawText(x + 1, y + boxHeight + 2, usageText, colors.white)
 end
