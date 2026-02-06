@@ -1,7 +1,11 @@
+-- Reactor Control
 os.loadAPI("lib/button")
 os.loadAPI("lib/utils")
 os.loadAPI("lib/reactor_module")
 os.loadAPI("lib/monitor")
+-- UI Elements
+os.loadAPI("ui/components/generator_indicator")
+
 -- monitor size 71 x 26
 local module1 = reactor_module.ReactorModule:new("Module 1", 1, 1)
 local module2 = reactor_module.ReactorModule:new("Module 2", 2, 2)
@@ -32,14 +36,16 @@ function screen()
     monitor1:drawVLine(monitor1:getW() - 1, 2, monitor1:getH() - 2)
     monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
     
-    monitor1:drawText(4, 4, "Module 1 - Generation: "
-        ..module1:getRawTotal()
-        .."su Usage: "
-        ..module1:getRawUsage()
-        .. " ("
-        ..utils.formatPercent(module1:getUsagePercent())
-        ..")"
-    )
+    GeneratorIndicator1 = GeneratorIndicator:new()
+    GeneratorIndicator1:draw(monitor1, 6, 4, 20, 15, module1)
+    -- monitor1:drawText(4, 4, "Module 1 - Generation: "
+    --     ..module1:getRawTotal()
+    --     .."su Usage: "
+    --     ..module1:getRawUsage()
+    --     .. " ("
+    --     ..utils.formatPercent(module1:getUsagePercent())
+    --     ..")"
+    -- )
 
     monitor1:drawText(4, 5, "Module 2 - Generation: "
         ..module2:getRawTotal()
