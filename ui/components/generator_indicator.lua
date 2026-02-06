@@ -1,10 +1,11 @@
+local STATUS = {
+    OFF = 0,
+    ON = 1,
+    IDLE = 3,
+    ERROR = 4
+}
+
 GeneratorIndicator = {
-    STATUS = {
-        OFF = 0,
-        ON = 1,
-        IDLE = 3,
-        ERROR = 4
-    },
     usage = nil,
     module_name = ""
 }
@@ -13,7 +14,7 @@ function GeneratorIndicator:new()
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    o.status = self.STATUS.OFF
+    o.status = STATUS.OFF
     o.usage = nil
     o.module_name = ""
     return o
@@ -47,13 +48,13 @@ end
 ------------ logic functions ------------
 function GeneratorIndicator:calculateStatus(module)
     if module:getTotal() == nil or module:getUsage() == nil then
-        return self.STATUS.ERROR
+        return STATUS.ERROR
     elseif module:getUsage() == 0 then
-        return self.STATUS.IDLE
+        return STATUS.IDLE
     elseif module:getUsage() == module:getTotal() then
-        return self.STATUS.ON
+        return STATUS.ON
     else
-        return self.STATUS.OFF
+        return STATUS.OFF
     end
 end
 
@@ -67,20 +68,22 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
 
     local colorMap = {
-        [self.STATUS.IDLE] = colors.orange,
-        [self.STATUS.ON] = colors.cyan,
-        [self.STATUS.OFF] = colors.gray,
-        [self.STATUS.ERROR] = colors.red
+        [STATUS.IDLE] = colors.orange,
+        [STATUS.ON] = colors.cyan,
+        [STATUS.OFF] = colors.gray,
+        [STATUS.ERROR] = colors.red
     }
-    local boxColor = colorMap[self:getStatus()] or colors.black
+    local boxColor = colorMap[self:getStatus()] or colors.cyan
 
     -- draw box
     for i = 0, height - 1 do
-        monitor:drawBox(x, y + i, width, 1, boxColor)
+        monitor:drawBox(x, y + i, width, 1, colors.white, boxColor, true)
     end
 
     -- module name
     monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
+    -- status text
+    monitor:drawText(x + math.floor((width - #self:getStatus()) / 2), y + 1, self:getStatus(), colors.white)
 
     -- module usage
     local usageText = string.format("Usage: %d%%", math.floor((module:getUsagePercent() or 0) * 100))
