@@ -1,8 +1,8 @@
 GeneratorIndicator = {
     STATUS = {
-        IDLE = 0,
+        OFF = 0,
         ON = 1,
-        OFF = 3,
+        IDLE = 3,
         ERROR = 4
     },
     usage = nil,
@@ -13,7 +13,7 @@ function GeneratorIndicator:new()
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    o.STATUS = self.STATUS.OFF
+    o.status = self.STATUS.OFF
     o.usage = nil
     o.module_name = ""
     return o
@@ -21,11 +21,11 @@ end
 
 ------------ getters and setters ------------
 function GeneratorIndicator:getStatus()
-    return self.STATUS
+    return self.status
 end
 
 function GeneratorIndicator:setStatus(status)
-    self.STATUS = status
+    self.status = status
 end
 
 function GeneratorIndicator:getUsage()
@@ -73,7 +73,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
         [self.STATUS.ERROR] = colors.red
     }
     local boxColor = colorMap[self:getStatus()] or colors.black
-    
+
     -- draw box
     monitor.setBackgroundColor(boxColor)
     for i = 0, height - 1 do
@@ -82,7 +82,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     end
 
     -- module name
-    monitor.setCursorPos(x + math.floor((width - #self:getModuleName())/ 2), y)
+    monitor.setCursorPos(x + math.floor((width - #self:getModuleName()) / 2), y)
     monitor.setTextColor(colors.white)
     monitor.write(self:getModuleName())
 
