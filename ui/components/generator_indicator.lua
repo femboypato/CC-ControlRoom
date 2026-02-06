@@ -3,7 +3,7 @@ local STATUS = {
     ON = "ON",
     IDLE = "IDLE",
     ERROR = "ERROR",
-    UNKNOWN = "?"
+    UNKNOWN = "?" -- fallback, lo incorporamos cuando hagamos un OFF manual
 }
 
 local colorMap = {
@@ -77,8 +77,8 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
 
     -- info
     local boxColor = colorMap[self:getStatus()] or colors.cyan
-    local statusText = STATUS[self:getStatus()] or "UNKNOWN"
-    local usageText = module:getUsagePercent()
+    local statusText = self:getStatus() or "?"
+    local usageText = string.format("%d%%", math.floor((module:getUsagePercent() or 0) * 100))
 
     -- medidas
     local boxHeight = math.floor(height - 2)
