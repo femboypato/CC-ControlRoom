@@ -83,7 +83,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
 
     -- module usage
-    local usageText = string.format("Usage: %d%%", math.floor((self:getUsagePercent() or 0) * 100))
+    local usageText = string.format("Usage: %d%%", math.floor((module:getUsagePercent() or 0) * 100))
     monitor:drawText(x + math.floor((width - #usageText) / 2), y + height - 1, usageText, colors.white)
 
     -- reset
