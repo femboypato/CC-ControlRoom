@@ -36,7 +36,7 @@ function screen()
     monitor1:drawVLine(monitor1:getW() - 1, 2, monitor1:getH() - 2)
     monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
     
-    GeneratorIndicator1 = GeneratorIndicator:new()
+    local GeneratorIndicator1 = generator_indicator.GeneratorIndicator:new()
     GeneratorIndicator1:draw(monitor1, 6, 4, 20, 15, module1)
     -- monitor1:drawText(4, 4, "Module 1 - Generation: "
     --     ..module1:getRawTotal()
