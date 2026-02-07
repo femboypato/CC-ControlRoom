@@ -1,3 +1,5 @@
+os.loadAPI("lib/utils")
+
 local STATUS = {
     OFF = "OFF",
     ON = "ON",
@@ -104,7 +106,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     monitor:drawText(x + 1, y + boxHeight + 2, usageText, colors.white)
 
     -- DEBUG
-    monitor:drawText(x + 1, y + boxHeight + 3, "U:" .. tostring(rawUsage), colors.white)
-    monitor:drawText(x + 1, y + boxHeight + 4, "T:" .. tostring(rawTotal), colors.white)
+    monitor:drawText(x + 1, y + boxHeight + 3, "U:" .. utils.humanizeNumber(rawUsage), colors.white)
+    monitor:drawText(x + 1, y + boxHeight + 4, "T:" .. utils.humanizeNumber(rawTotal), colors.white)
     monitor:drawText(x + 1, y + boxHeight + 5, "P:" .. tostring(rawUsagePercent), colors.white)
 end
