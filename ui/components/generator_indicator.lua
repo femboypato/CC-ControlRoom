@@ -42,7 +42,7 @@ function draw(monitor, x, y, width, height, module)
     local boxHeight = math.floor(height - 2)
 
     -- module name
-    monitor:drawText(x + math.floor((width - #module.getName()) / 2), y, module.getName(), colors.white)
+    monitor:drawText(x + math.floor((width - #module:getName()) / 2), y, module:getName(), colors.white)
 
     -- status display
     monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor, colors.white, true)
