@@ -13,19 +13,21 @@ local monitor2 = monitor.Monitor:new(4)
 -- girame unos modules
 local modules = {}
 for i = 1, 14 do
-    modules[i] = reactor_module.ReactorModule:new("Module "..i, i, i)
+    modules[i] = reactor_module.ReactorModule:new("Module " .. i, i, i)
 end
 
 function init()
     button.clearTable()
     monitor1:clear()
     monitor1:drawTextCenter(0, 0, monitor1:getW() / 2 - 1, "Loading...")
-    for i = 1,14 do
-        print("Created " ..modules[i]:getName().." with target: " ..modules[i]:getTarget():getId())
+    for i = 1, 14 do
+        local target = modules[i]:getTarget()
+        local targetInfo = target and target:getId() or "No target"
+        print("Created " .. modules[i]:getName() .. " with target: " .. targetInfo)
     end
 
     -- cache initial data
-    for i=1,20 do
+    for i = 1, 20 do
         monitor1:drawProgressBar(monitor1:getW() / 4, monitor1:getH() / 2, monitor1:getW() / 2, i / 20)
         for o = 1, #modules do
             modules[o]:refresh()
@@ -43,7 +45,7 @@ function screen()
     monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
 
     -- Indicators config
-    local topY = 4 -- top row starts at 4
+    local topY = 4     -- top row starts at 4
     local bottomY = 15 -- bottom row starts at 15
     local indicatorWidth = 9
     local indicatorHeight = 5
