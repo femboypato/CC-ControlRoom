@@ -13,7 +13,52 @@ local colorMap = {
     [STATUS.ERROR] = colors.red
 }
 
-function calculateStatus(module)
+GeneratorIndicator = {
+    usage = nil,
+    module_name = ""
+}
+
+function GeneratorIndicator:new()
+    local o = {}
+    setmetatable(o, self)
+    self.__index = self
+    o.status = STATUS.OFF
+    o.usage = nil
+    o.module_name = ""
+    return o
+end
+
+------------ getters and setters ------------
+function GeneratorIndicator:getStatus()
+    return self.status
+end
+
+function GeneratorIndicator:setStatus(status)
+    self.status = status
+end
+
+function GeneratorIndicator:getUsage()
+    return self.usage
+end
+
+function GeneratorIndicator:setUsage(usage)
+    if usage then
+        self.usage = usage
+    else
+        self.usage = 0
+    end
+end
+
+function GeneratorIndicator:getModuleName()
+    return self.module_name
+end
+
+function GeneratorIndicator:setModuleName(name)
+    self.module_name = name
+end
+
+------------ logic functions ------------
+function GeneratorIndicator:calculateStatus(module)
     if module:getTotal() == nil or module:getUsage() == nil then
         return STATUS.ERROR
     elseif module:getUsage() == 0 then
@@ -25,24 +70,31 @@ function calculateStatus(module)
     end
 end
 
-function draw(monitor, x, y, width, height, module)
+function GeneratorIndicator:refresh(module)
+    self:setModuleName(module:getName())
+    self:setUsage(module:getUsagePercent())
+    self:setStatus(self:calculateStatus(module))
+end
+
+function GeneratorIndicator:draw(monitor, x, y, width, height, module)
+    self:refresh(module)
+
     -- debug
     local rawUsagePercent = module:getUsagePercent()
     local rawUsage = module:getUsage()
     local rawTotal = module:getTotal()
-    local status = calculateStatus(module)
 
     -- info
-    local boxColor = colorMap[status] or colors.cyan
-    local statusText = status or "?"
-    local usageValue = rawUsagePercent
+    local boxColor = colorMap[self:getStatus()] or colors.cyan
+    local statusText = self:getStatus() or "?"
+    local usageValue = self:getUsage()
     local usageText = (usageValue == 0) and "--" or string.format("%d%%", math.floor((usageValue or 0) * 100))
 
     -- medidas
     local boxHeight = math.floor(height - 2)
 
     -- module name
-    monitor:drawText(x + math.floor((width - #module.getName()) / 2), y, module.getName(), colors.white)
+    monitor:drawText(x + math.floor((width - #self:getModuleName()) / 2), y, self:getModuleName(), colors.white)
 
     -- status display
     monitor:drawBox(x + 1, y + 1, width - 2, boxHeight, boxColor, colors.white, true)

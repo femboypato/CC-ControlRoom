@@ -54,13 +54,15 @@ function screen()
     -- tops
     for i = 1, 7 do
         local xPos = 4 + (i - 1) * (indicatorWidth + spacing)
-        generator_indicator.draw(monitor1, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
+        local indicator = generator_indicator.GeneratorIndicator:new()
+        indicator:draw(monitor1, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
     end
 
     -- bottoms
     for i = 8, 14 do
         local xPos = 4 + (i - 8) * (indicatorWidth + spacing)
-        generator_indicator.draw(monitor1, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
+        local indicator = generator_indicator.GeneratorIndicator:new()
+        indicator:draw(monitor1, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
     end
 
     monitor2:clear()
