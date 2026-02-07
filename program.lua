@@ -22,7 +22,7 @@ function init()
     monitor1:drawTextCenter(0, 0, monitor1:getW() / 2 - 1, "Loading...")
     for i = 1, 14 do
         local target = modules[i]:getTarget()
-        local targetInfo = target and target:getId() or "No target"
+        local targetInfo = target:getId() or "No target"
         print("Created " .. modules[i]:getName() .. " with target: " .. targetInfo)
     end
 

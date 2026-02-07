@@ -17,6 +17,10 @@ function CreateTarget:new(id)
 end
 
 function CreateTarget:getId()
+    if self.target == nil then
+        return nil
+    end
+    
     return peripheral.getName(self.target)
 end
 
