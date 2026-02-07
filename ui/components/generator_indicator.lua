@@ -88,7 +88,7 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     local boxColor = colorMap[self:getStatus()] or colors.cyan
     local statusText = self:getStatus() or "?"
     local usageValue = self:getUsage()
-    local usageText = (usageValue == -2) and "--" or string.format("%d%%", math.floor((usageValue or 0) * 100))
+    local usageText = (usageValue == 0) and "--" or string.format("%d%%", math.floor((usageValue or 0) * 100))
 
     -- medidas
     local boxHeight = math.floor(height - 2)
