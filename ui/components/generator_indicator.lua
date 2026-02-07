@@ -108,5 +108,5 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     -- DEBUG
     monitor:drawText(x + 1, y + boxHeight + 3, "U:" .. utils.humanizeNumber(rawUsage), colors.white)
     monitor:drawText(x + 1, y + boxHeight + 4, "T:" .. utils.humanizeNumber(rawTotal), colors.white)
-    monitor:drawText(x + 1, y + boxHeight + 5, "P:" .. tostring(rawUsagePercent), colors.white)
+    monitor:drawText(x + 1, y + boxHeight + 5, "P:" .. utils.formatPercent(rawUsagePercent), colors.white)
 end

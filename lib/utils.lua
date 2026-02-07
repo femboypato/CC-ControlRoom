@@ -37,9 +37,9 @@ end
 
 function humanizeNumber(n)
     if n >= 1e6 then
-        return string.format("%.2fm", n / 1e6) -- Millions
+        return string.format("%.2f M", n / 1e6) -- Millions
     elseif n >= 1e3 then
-        return string.format("%.2fk", n / 1e3) -- Thousands
+        return string.format("%.2f K", n / 1e3) -- Thousands
     else
         return tostring(n)
     end
