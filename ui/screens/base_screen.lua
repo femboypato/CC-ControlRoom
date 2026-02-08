@@ -3,6 +3,8 @@ BaseScreen = {}
 function BaseScreen:new(monitor, title)
     local o = {}
     setmetatable(o, self)
+    self.__index = self
+    
     o.monitor = monitor
     o.title = title or "Screen"
     return o

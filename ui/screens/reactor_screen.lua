@@ -5,8 +5,10 @@ ReactorScreen = {}
 
 function ReactorScreen:new(monitor, title)
     local o = base_screen.BaseScreen:new(monitor, title)
-    setmetatable(o, ReactorScreen)
-
+    setmetatable(o, self)
+    self.__index = self
+    
+    o.monitor = monitor
     return o
 end
 

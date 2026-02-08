@@ -15,6 +15,7 @@ function ReactorModule:new(name, targetId, relayId)
     local o = {}
     setmetatable(o, self)
     self.__index = self
+    
     o.name = name
     o.target = create_target.CreateTarget:new(targetId)
     o.relay = redstone_relay.RedstoneRelay:new(relayId)
