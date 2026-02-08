@@ -16,7 +16,7 @@ function ReactorScreen:new(monitor, title)
     return o
 end
 
-function ReactorScreen:render(monitor, modules)
+function ReactorScreen:render(modules)
     self.monitor:clear()
     self.base:drawBorder()
 
