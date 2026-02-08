@@ -48,8 +48,8 @@ function ReactorModule:getRawUsage()
 end
 
 function ReactorModule:getRemaining()
-    total = self:getTotal()
-    usage = self:getUsage()
+    local total = self:getTotal()
+    localusage = self:getUsage()
     if total == nil or usage == nil then
         return nil
     end
@@ -58,8 +58,8 @@ function ReactorModule:getRemaining()
 end
 
 function ReactorModule:getUsagePercent()
-    total = self:getTotal()
-    usage = self:getUsage()
+    local total = self:getTotal()
+    local usage = self:getUsage()
     if total == nil or usage == nil then
         return nil
     end

@@ -18,7 +18,7 @@ function parseSU(str)
         return 0
     end
 
-    num = string.gsub(str, "%D", "")
+    local num = string.gsub(str, "%D", "")
 
     if num == "" then
         return 0
