@@ -24,16 +24,13 @@ local iconMap = {
     [STATUS.UNKNOWN] = "[?]"
 }
 
-GeneratorIndicator = {
-    usage = nil,
-    moduleName = "",
-    status = STATUS.OFF
-}
+GeneratorIndicator = {}
+GeneratorIndicator.__index = GeneratorIndicator
 
 function GeneratorIndicator:new()
     local o = {}
-    setmetatable(o, self)
-    self.__index = self
+    setmetatable(o, GeneratorIndicator)
+    
     o.status = STATUS.OFF
     o.usage = nil
     o.moduleName = ""
@@ -61,10 +58,12 @@ local function formatUsagePercent(percent)
     end
 end
 
-
 ------------ public methods ------------
 function GeneratorIndicator:refresh(module)
+    print("=== DEBUG: GeneratorIndicator:refresh ===")
+    
     if not module then
+        print("DEBUG: module is nil")
         self.moduleName = "No Module"
         self.usage = 0
         self.total = 0
@@ -72,10 +71,14 @@ function GeneratorIndicator:refresh(module)
         self.status = STATUS.UNKNOWN
         return
     end
-
+    
+    print("DEBUG: module exists: " .. tostring(module))
+    
     local hasTarget = module.getTarget and module:getTarget() ~= nil
-
+    print("DEBUG: hasTarget = " .. tostring(hasTarget))
+    
     if not hasTarget then
+        print("DEBUG: No target found")
         self.moduleName = "No Target"
         self.usage = 0
         self.total = 0
@@ -83,40 +86,44 @@ function GeneratorIndicator:refresh(module)
         self.status = STATUS.OFF
         return
     end
-
+    
     -- Normal refresh with target
     self.moduleName = module:getName() or "Module"
     self.usage = module:getUsage() or 0
     self.total = module:getTotal() or 0
     self.usagePercent = module:getUsagePercent() or 0
     self.status = calculateStatus(self.usage, self.total)
+    
+    print("DEBUG: moduleName = " .. tostring(self.moduleName))
+    print("DEBUG: usage = " .. tostring(self.usage))
+    print("DEBUG: total = " .. tostring(self.total))
+    print("DEBUG: usagePercent = " .. tostring(self.usagePercent))
+    print("DEBUG: status = " .. tostring(self.status))
+    print("=== END DEBUG ===")
 end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
-
+    
     -- text & colors
     local statusIcon = iconMap[self.status] or iconMap[STATUS.UNKNOWN]
     local statusColor = colorMap[self.status] or colors.gray
     local percentText = formatUsagePercent(self.usagePercent)
     local usageText = utils.humanizeNumber(self.usage)
-
+    
     -- columns width
     local iconWidth = #statusIcon
     local nameWidth = math.min(#self.moduleName, width - iconWidth - 8)
     local percentWidth = 5
     local usageWidth = width - iconWidth - nameWidth - percentWidth - 4
-
+    
     -- Status icon
     monitor:drawBox(x, y, iconWidth, height, statusColor, colors.white, true)
     monitor:drawText(x + 1, y + math.floor((height - 1) / 2), statusIcon, colors.white)
-
     -- Module name
     monitor:drawText(x + iconWidth + 1, y, self.moduleName, colors.white)
-
     -- Usage percentage
     monitor:drawText(x + iconWidth + nameWidth + 2, y, percentText, colors.lightGray)
-
     -- Formatted usage value
     monitor:drawText(x + usageWidth, y, usageText, colors.gray)
 end
