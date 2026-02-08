@@ -27,13 +27,21 @@ local iconMap = {
 GeneratorIndicator = {}
 GeneratorIndicator.__index = GeneratorIndicator
 
-function GeneratorIndicator:new()
+function GeneratorIndicator:new(module)
     local o = {}
     setmetatable(o, GeneratorIndicator)
     
-    o.status = STATUS.OFF
-    o.usage = nil
-    o.moduleName = ""
+    o.module = module
+    o.nmoduleName = "No module"
+    o.usage = 0
+    o.total = 0
+    o.usagePercent = 0
+    o.status = STATUS.UNKNOWN
+
+    if module then
+        o:refresh(module)
+    end
+
     return o
 end
 
