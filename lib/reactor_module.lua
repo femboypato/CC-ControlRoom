@@ -49,7 +49,7 @@ end
 
 function ReactorModule:getRemaining()
     local total = self:getTotal()
-    localusage = self:getUsage()
+    local usage = self:getUsage()
     if total == nil or usage == nil then
         return nil
     end
