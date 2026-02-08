@@ -28,6 +28,6 @@ function ReactorScreen:render(modules)
     for i = 1, #modules do
         local yPos = topY + (i - 1) * lineHeight
         local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(monitor, 4, yPos, tableWidth, 1, modules[i])
+        indicator:draw(self.monitor, 4, yPos, tableWidth, 1, modules[i])
     end
 end
