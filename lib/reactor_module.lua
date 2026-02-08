@@ -6,15 +6,12 @@ TOTAL_LINE_INDEX = 2
 USAGE_LINE_INDEX = 1
 
 ReactorModule = {
-    name = "",
-    target = nil,
-    relay = nil
 }
+ReactorModule.__index = ReactorModule
 
 function ReactorModule:new(name, targetId, relayId)
     local o = {}
     setmetatable(o, self)
-    self.__index = self
     
     o.name = name
     o.target = create_target.CreateTarget:new(targetId)
