@@ -74,16 +74,16 @@ function GeneratorIndicator:refresh(module)
     end
 
     local hasTarget = module.getTarget and module:getTarget() ~= nil
-    
+
     if not hasTarget then
-        self.module_name = "No Target"
+        self.moduleName = "No Target"
         self.usage = 0
         self.total = 0
         self.usagePercent = 0
         self.status = STATUS.OFF
         return
     end
-    
+
     -- Normal refresh with target
     self.moduleName = module:getName() or "Module"
     self.usage = module:getUsage() or 0
@@ -94,7 +94,7 @@ end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     self:refresh(module)
-    
+
     -- text & colors
     local statusIcon = iconMap[self.status] or iconMap[STATUS.UNKNOWN]
     local statusColor = colorMap[self.status] or colors.gray
@@ -108,16 +108,15 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     local usageWidth = width - iconWidth - nameWidth - percentWidth - 4
 
     -- Status icon
-   monitor:drawBox(x, y, iconWidth, height, statusColor, colors.white, true)
+    monitor:drawBox(x, y, iconWidth, height, statusColor, colors.white, true)
     monitor:drawText(x + 1, y + math.floor((height - 1) / 2), statusIcon, colors.white)
-    
+
     -- Module name
-    local truncatedName = string.sub(self.module_name, 1, nameWidth)
-    monitor:drawText(x + iconWidth + 1, y, truncatedName, colors.white)
-    
+    monitor:drawText(x + iconWidth + 1, y, self.moduleName, colors.white)
+
     -- Usage percentage
     monitor:drawText(x + iconWidth + nameWidth + 2, y, percentText, colors.lightGray)
-    
+
     -- Formatted usage value
     monitor:drawText(x + usageWidth, y, usageText, colors.gray)
 end
