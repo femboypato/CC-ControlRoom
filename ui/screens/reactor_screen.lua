@@ -4,13 +4,13 @@ os.loadAPI("ui/componnents/base_screen")
 ReactorScreen = {}
 
 function ReactorScreen:new(monitor, title)
-    local self = base_screen.BaseScreen:new(monitor, title)
-    setmetatable(self, ReactorScreen)
+    local o = base_screen.BaseScreen:new(monitor, title)
+    setmetatable(o, ReactorScreen)
 
-    return self
+    return o
 end
 
-function ReactorScreen:render(modules)
+function ReactorScreen:render(monitor, modules)
     self:clear()
     self:drawBorder()
 
@@ -25,13 +25,13 @@ function ReactorScreen:render(modules)
     for i = 1, 7 do
         local xPos = 4 + (i - 1) * (indicatorWidth + spacing)
         local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(monitor1, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
+        indicator:draw(monitor, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
     end
 
     -- bottoms
     for i = 8, 14 do
         local xPos = 4 + (i - 8) * (indicatorWidth + spacing)
         local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(monitor1, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
+        indicator:draw(monitor, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
     end
 end
