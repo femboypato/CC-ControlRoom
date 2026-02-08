@@ -1,10 +1,11 @@
 BaseScreen = {}
 
 function BaseScreen:new(monitor, title)
-    local self = setmetatable({}, title)
-    self.monitor = monitor
-    self.title = title or "Screen"
-    return self
+    local o = {}
+    setmetatable(o, self)
+    o.monitor = monitor
+    o.title = title or "Screen"
+    return o
 end
 
 function BaseScreen:drawBorder()
