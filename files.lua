@@ -30,5 +30,13 @@ files = {
     {
         path= "ui/components/generator_indicator",
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/components/generator_indicator.lua"
-    }
+    },
+    {
+        path= "ui/screens/base_screen",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/screens/base_screen.lua"
+    },
+    {
+        path= "ui/screens/reactor_screen",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/screens/reactor_screen.lua"
+    },
 }
