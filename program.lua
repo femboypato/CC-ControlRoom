@@ -41,12 +41,39 @@ function init()
 end
 
 function screen()
-    -- huh???? data for the modules is still wrong here (no usage values)
-    -- print("Module info:")
-    -- for i = 1, #modules do
-    --     print("Module " .. i .. ": " .. modules[i]:getName() .. " - Usage: " .. modules[i]:getRawUsage() .. ", Total: " .. modules[i]:getRawTotal())
-    -- end
+    print("Module info:")
+    for i = 1, 4 do
+        print("Module " .. i .. ": " .. modules[i]:getName() .. " - Usage: " .. modules[i]:getRawUsage() .. ", Total: " .. modules[i]:getRawTotal())
+    end
     reactorScreen:render(modules)
+
+    -- monitor1:clear()
+    -- monitor1:drawHLine(2, 2, monitor1:getW() - 2)
+    -- monitor1:drawHLine(2, monitor1:getH() - 1, monitor1:getW() - 2)
+    -- monitor1:drawVLine(2, 2, monitor1:getH() - 1)
+    -- monitor1:drawVLine(monitor1:getW() - 1, 2, monitor1:getH() - 2)
+    -- monitor1:drawTextCenter(0, 0, 2, " Reactor Control ", colors.red)
+
+    -- -- Indicators config
+    -- local topY = 4     -- top row starts at 4
+    -- local bottomY = 15 -- bottom row starts at 15
+    -- local indicatorWidth = 9
+    -- local indicatorHeight = 5
+    -- local spacing = 0.5
+
+    -- -- tops
+    -- for i = 1, 7 do
+    --     local xPos = 4 + (i - 1) * (indicatorWidth + spacing)
+    --     local indicator = generator_indicator.GeneratorIndicator:new()
+    --     indicator:draw(monitor1, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
+    -- end
+
+    -- -- bottoms
+    -- for i = 8, 14 do
+    --     local xPos = 4 + (i - 8) * (indicatorWidth + spacing)
+    --     local indicator = generator_indicator.GeneratorIndicator:new()
+    --     indicator:draw(monitor1, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
+    -- end
 
     monitor2:clear()
     monitor2:drawHLine(2, 2, monitor1:getW() - 2)
@@ -60,10 +87,6 @@ function mainLoop()
     init()
 
     while true do
-        for i = 1, #modules do
-            modules[i]:refresh()
-        end
-
         screen()
         sleep(0.5)
     end
