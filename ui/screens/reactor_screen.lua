@@ -1,13 +1,12 @@
 os.loadAPI("ui/components/generator_indicator")
 os.loadAPI("ui/screens/base_screen")
 
-ReactorScreen = {
-}
+ReactorScreen = {}
+ReactorScreen.__index = ReactorScreen
 
 function ReactorScreen:new(monitor, title)
     local o = {}
     setmetatable(o, self)
-    self.__index = self
     
     o.monitor = monitor
     o.base = base_screen.BaseScreen:new(monitor, title)
