@@ -2,8 +2,6 @@ os.loadAPI("ui/components/generator_indicator")
 os.loadAPI("ui/screens/base_screen")
 
 ReactorScreen = {
-    monitor = nil,
-    base = nil
 }
 
 function ReactorScreen:new(monitor, title)
