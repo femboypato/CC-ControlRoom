@@ -61,7 +61,6 @@ end
 ------------ public methods ------------
 function GeneratorIndicator:refresh(module)
     if not module then
-        print("M:nil")
         self.moduleName = "No Module"
         self.usage = 0
         self.total = 0
@@ -72,7 +71,6 @@ function GeneratorIndicator:refresh(module)
     
     local hasTarget = module.getTarget and module:getTarget() ~= nil
     if not hasTarget then
-        print("M:noTarget")
         self.moduleName = "No Target"
         self.usage = 0
         self.total = 0
@@ -92,13 +90,13 @@ function GeneratorIndicator:refresh(module)
     self.status = calculateStatus(self.usage, self.total)
     
     -- debug
-    print(string.format("%s: raw(%s/%s) final(%s/%s) -> %s", 
-        self.moduleName, 
-        tostring(rawUsage), 
-        tostring(rawTotal),
-        self.usage,
-        self.total,
-        self.status))
+    -- print(string.format("%s: raw(%s/%s) final(%s/%s) -> %s", 
+    --     self.moduleName, 
+    --     tostring(rawUsage), 
+    --     tostring(rawTotal),
+    --     self.usage,
+    --     self.total,
+    --     self.status))
 end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)

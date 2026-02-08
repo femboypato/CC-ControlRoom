@@ -41,6 +41,10 @@ function init()
 end
 
 function screen()
+    print("Module info:")
+    for i = 1, 4 do
+        print("Module " .. i .. ": " .. modules[i]:getName() .. " - Usage: " .. modules[i]:getRawUsage() .. ", Total: " .. modules[i]:getRawTotal())
+    end
     reactorScreen:render(modules)
 
     -- monitor1:clear()
