@@ -81,14 +81,24 @@ function GeneratorIndicator:refresh(module)
         return
     end
     
-    -- Normal refresh with target
+    local rawUsage = module:getUsage()
+    local rawTotal = module:getTotal()
+    local rawPercent = module:getUsagePercent()
+    
     self.moduleName = module:getName() or "Module"
-    self.usage = module:getUsage() or 0
-    self.total = module:getTotal() or 0
-    self.usagePercent = module:getUsagePercent() or 0
+    self.usage = rawUsage or 0
+    self.total = rawTotal or 0
+    self.usagePercent = rawPercent or 0
     self.status = calculateStatus(self.usage, self.total)
     
-    print(string.format("%s: %s/%s (%s)", self.moduleName, self.usage, self.total, self.status))
+    -- debug
+    print(string.format("%s: raw(%s/%s) final(%s/%s) -> %s", 
+        self.moduleName, 
+        tostring(rawUsage), 
+        tostring(rawTotal),
+        self.usage,
+        self.total,
+        self.status))
 end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
