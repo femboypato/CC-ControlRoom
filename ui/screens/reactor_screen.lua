@@ -21,23 +21,13 @@ function ReactorScreen:render(monitor, modules)
     self.base:drawBorder()
 
     -- Indicators config
-    local topY = 4     -- top row starts at 4
-    local bottomY = 15 -- bottom row starts at 15
-    local indicatorWidth = 9
-    local indicatorHeight = 5
-    local spacing = 0.5
+    local topY = 4    
+    local lineHeight = 2
+    local tableWidth = 70
 
-        -- tops
-    for i = 1, 7 do
-        local xPos = 4 + (i - 1) * (indicatorWidth + spacing)
+    for i = 1, 14 do
+        local yPos = topY + (i - 1) * lineHeight
         local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(monitor, xPos, topY, indicatorWidth, indicatorHeight, modules[i])
-    end
-
-    -- bottoms
-    for i = 8, 14 do
-        local xPos = 4 + (i - 8) * (indicatorWidth + spacing)
-        local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(monitor, xPos, bottomY, indicatorWidth, indicatorHeight, modules[i])
+        indicator:draw(monitor, 4, yPos, tableWidth, 1, modules[i])
     end
 end
