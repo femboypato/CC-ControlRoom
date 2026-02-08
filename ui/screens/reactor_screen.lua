@@ -1,5 +1,5 @@
 os.loadAPI("ui/components/generator_indicator")
-os.loadAPI("ui/componnents/base_screen")
+os.loadAPI("ui/screens/base_screen")
 
 ReactorScreen = {}
 
