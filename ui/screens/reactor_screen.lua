@@ -1,20 +1,24 @@
 os.loadAPI("ui/components/generator_indicator")
 os.loadAPI("ui/screens/base_screen")
 
-ReactorScreen = {}
+ReactorScreen = {
+    monitor = nil,
+    base = nil
+}
 
 function ReactorScreen:new(monitor, title)
-    local o = base_screen.BaseScreen:new(monitor, title)
+    local o = {}
     setmetatable(o, self)
     self.__index = self
     
     o.monitor = monitor
+    o.base = base_screen.BaseScreen:new(monitor, title)
     return o
 end
 
 function ReactorScreen:render(monitor, modules)
-    self:clear()
-    self:drawBorder()
+    self.monitor:clear()
+    self.base:drawBorder()
 
     -- Indicators config
     local topY = 4     -- top row starts at 4

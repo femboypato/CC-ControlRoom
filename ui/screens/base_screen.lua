@@ -1,10 +1,13 @@
-BaseScreen = {}
+BaseScreen = {
+    monitor = nil,
+    title = ""
+}
 
 function BaseScreen:new(monitor, title)
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    
+
     o.monitor = monitor
     o.title = title or "Screen"
     return o
@@ -24,6 +27,6 @@ function BaseScreen:clear()
 end
 
 function BaseScreen:draw()
-    self:clear()
+    self.monitor:clear()
     self:drawBorder()
 end
