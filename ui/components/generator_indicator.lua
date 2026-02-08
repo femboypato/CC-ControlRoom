@@ -64,6 +64,27 @@ end
 
 ------------ public methods ------------
 function GeneratorIndicator:refresh(module)
+    if not module then
+        self.moduleName = "No Module"
+        self.usage = 0
+        self.total = 0
+        self.usagePercent = 0
+        self.status = STATUS.UNKNOWN
+        return
+    end
+
+    local hasTarget = module.getTarget and module:getTarget() ~= nil
+    
+    if not hasTarget then
+        self.module_name = "No Target"
+        self.usage = 0
+        self.total = 0
+        self.usagePercent = 0
+        self.status = STATUS.OFF
+        return
+    end
+    
+    -- Normal refresh with target
     self.moduleName = module:getName() or "Module"
     self.usage = module:getUsage() or 0
     self.total = module:getTotal() or 0
