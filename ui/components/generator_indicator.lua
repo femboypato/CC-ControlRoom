@@ -5,7 +5,7 @@ local STATUS = {
     ON = "ON",
     IDLE = "IDLE",
     ERROR = "ERROR",
-    UNKNOWN = "?" -- fallback, lo incorporamos cuando hagamos un OFF manual
+    UNKNOWN = "?"
 }
 
 local colorMap = {
@@ -60,10 +60,8 @@ end
 
 ------------ public methods ------------
 function GeneratorIndicator:refresh(module)
-    print("=== DEBUG: GeneratorIndicator:refresh ===")
-    
     if not module then
-        print("DEBUG: module is nil")
+        print("M:nil")
         self.moduleName = "No Module"
         self.usage = 0
         self.total = 0
@@ -72,13 +70,9 @@ function GeneratorIndicator:refresh(module)
         return
     end
     
-    print("DEBUG: module exists: " .. tostring(module))
-    
     local hasTarget = module.getTarget and module:getTarget() ~= nil
-    print("DEBUG: hasTarget = " .. tostring(hasTarget))
-    
     if not hasTarget then
-        print("DEBUG: No target found")
+        print("M:noTarget")
         self.moduleName = "No Target"
         self.usage = 0
         self.total = 0
@@ -94,12 +88,7 @@ function GeneratorIndicator:refresh(module)
     self.usagePercent = module:getUsagePercent() or 0
     self.status = calculateStatus(self.usage, self.total)
     
-    print("DEBUG: moduleName = " .. tostring(self.moduleName))
-    print("DEBUG: usage = " .. tostring(self.usage))
-    print("DEBUG: total = " .. tostring(self.total))
-    print("DEBUG: usagePercent = " .. tostring(self.usagePercent))
-    print("DEBUG: status = " .. tostring(self.status))
-    print("=== END DEBUG ===")
+    print(string.format("%s: %s/%s (%s)", self.moduleName, self.usage, self.total, self.status))
 end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
