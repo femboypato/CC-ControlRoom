@@ -22,7 +22,7 @@ function ReactorScreen:render(modules)
     local x          = 5
     local headerY    = 5
     local topY       = 7
-    local lineHeight = 2
+    local lineHeight = 2 -- multiplier
 
     self.table:drawHeader(self.monitor, x, headerY)
     for i = 1, #modules do

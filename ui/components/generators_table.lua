@@ -76,6 +76,14 @@ local columns = {
             local usage = module:getUsage() and module:getUsage() or 0
             return { text = utils.humanizeNumber(usage), color = colors.gray }
         end
+    },
+    {
+        header = "Fuel",
+        width = 12,
+        value = function(module)
+            local fuelUsage = 1.875 * (module:getUsage() or 0) -- 1.875 nuclear fuel per module
+            return { text = fuelUsage ..  "/min", color = colors.lightblue }
+        end
     }
 }
 
