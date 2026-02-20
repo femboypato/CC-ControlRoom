@@ -44,7 +44,7 @@ end
 local columns = {
     {
         header = "Status",
-        width = 6,
+        width = 8,
         value = function(module)
             local status = calculateStatus(module)
             return {
@@ -103,7 +103,7 @@ function GeneratorsTable:drawRow(monitor, x, y, height, module)
     for _, col in ipairs(columns) do
         local cell = col.value(module)
         if cell.isStatus then
-            monitor:drawBox(cursorX, y, col.width, height, cell.color)
+            monitor:drawBox(cursorX, y, col.width, height, cell.color, colors.white, true)
             monitor:drawText(cursorX + 2, y, cell.text, colors.white)
         else
             monitor:drawText(cursorX, y, cell.text, cell.color)
