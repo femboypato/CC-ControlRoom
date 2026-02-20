@@ -44,7 +44,7 @@ end
 local columns = {
     {
         header = "Status",
-        width = 10,
+        width = 15,
         value = function(module)
             local status = calculateStatus(module)
             return {

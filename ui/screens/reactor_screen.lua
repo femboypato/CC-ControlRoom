@@ -19,7 +19,7 @@ function ReactorScreen:render(modules)
     self.base:drawBorder()
 
     -- tables config
-    local x          = 4
+    local x          = 5
     local headerY    = 5
     local topY       = 7
     local lineHeight = 2
