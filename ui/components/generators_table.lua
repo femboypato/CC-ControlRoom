@@ -81,10 +81,11 @@ local columns = {
         header = "Fuel",
         width = 12,
         value = function(module)
-            if not module or module:getUsagePercent() == nil then
+            local usagePercent = module:getUsagePercent()
+            if not module or usagePercent == nil or usagePercent ~= usagePercent then
                 return { text = "0.000 /min", color = colors.gray }
             end
-            local fuelUsage = 1.875 * (module:getUsagePercent() / 100)
+            local fuelUsage = 1.875 * (usagePercent / 100)
             return { text = string.format("%.4f /min", fuelUsage), color = colors.lightblue }
         end
     }
