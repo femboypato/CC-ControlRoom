@@ -20,9 +20,9 @@ function ReactorScreen:render(modules)
 
     -- tables config
     local x          = 4
-    local headerY    = 3
+    local headerY    = 5
     local topY       = 5
-    local lineHeight = 2
+    local lineHeight = 6
 
     self.table:drawHeader(self.monitor, x, headerY)
     for i = 1, #modules do
