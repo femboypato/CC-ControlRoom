@@ -3,6 +3,7 @@ os.loadAPI("ui/screens/base_screen")
 
 ReactorScreen = {}
 ReactorScreen.__index = ReactorScreen
+-- monitor size 71 x 26
 
 function ReactorScreen:new(monitor, title)
     local o = {}
@@ -19,14 +20,20 @@ function ReactorScreen:render(modules)
     self.base:drawBorder()
 
     -- tables config
-    local x          = 5
+    local x          = 6
     local headerY    = 5
     local topY       = 7
     local lineHeight = 2 -- multiplier
 
+    --- table
     self.table:drawHeader(self.monitor, x, headerY)
-    for i = 1, #modules do
+    for i = 1, 14 do
         local yPos = topY + (i - 1) * lineHeight
         self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
     end
+
+    -- divider bottom
+    self.monitor:drawHLine(2, 20, self.monitor:getW() - 2)
+    
+
 end

@@ -44,7 +44,7 @@ end
 local columns = {
     {
         header = "Status",
-        width = 15,
+        width = 35,
         value = function(module)
             local status = calculateStatus(module)
             return {
@@ -81,8 +81,11 @@ local columns = {
         header = "Fuel",
         width = 12,
         value = function(module)
+            if not module or module:getUsagePercent() == nil then
+                return { text = "0.000 /min", color = colors.gray }
+            end
             local fuelUsage = (module:getUsagePercent()/100) * 1.875 -- 1.875 nuclear fuel per module
-            return { text = fuelUsage ..  "/min", color = colors.lightblue }
+            return { text = fuelUsage ..  " /min", color = colors.lightblue }
         end
     }
 }
@@ -110,6 +113,7 @@ function GeneratorsTable:drawRow(monitor, x, y, height, module)
     local cursorX = x
     for _, col in ipairs(columns) do
         local cell = col.value(module)
+
         if cell.isStatus then
             monitor:drawBox(cursorX, y, col.width, height, cell.color, colors.white, true)
             monitor:drawText(cursorX + 2, y, cell.text, colors.white)
