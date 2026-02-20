@@ -33,7 +33,7 @@ function ReactorScreen:render(modules)
     end
 
     -- divider bottom
-    self.monitor:drawHLine(2, 20, self.monitor:getW() - 2)
+    self.monitor:drawHLine(2, self.monitor:getH() - 22, self.monitor:getW() - 2)
     
 
 end
