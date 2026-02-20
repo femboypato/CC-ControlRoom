@@ -81,7 +81,7 @@ local columns = {
         header = "Fuel",
         width = 12,
         value = function(module)
-            local fuelUsage = (module:getUsage()/100) * 1.875 -- 1.875 nuclear fuel per module
+            local fuelUsage = (module:getUsagePercent()/100) * 1.875 -- 1.875 nuclear fuel per module
             return { text = fuelUsage ..  "/min", color = colors.lightblue }
         end
     }
