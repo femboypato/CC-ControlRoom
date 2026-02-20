@@ -28,12 +28,17 @@ function ReactorScreen:render(modules)
     --- table
     self.table:drawHeader(self.monitor, x, headerY)
     for i = 1, 14 do
+        modules[i]:refresh()
+    end
+    for i = 1, 14 do
         local yPos = topY + (i - 1) * lineHeight
         self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
     end
 
+    
+
     -- divider bottom
-    self.monitor:drawHLine(2, self.monitor:getH() - 22, self.monitor:getW() - 2)
+    self.monitor:drawHLine(2, 21, self.monitor:getW() - 2)
     
 
 end

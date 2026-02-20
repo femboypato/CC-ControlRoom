@@ -109,7 +109,6 @@ function GeneratorsTable:drawHeader(monitor, x, y)
 end
 
 function GeneratorsTable:drawRow(monitor, x, y, height, module)
-    module:refresh()
     local cursorX = x
     for _, col in ipairs(columns) do
         local cell = col.value(module)
