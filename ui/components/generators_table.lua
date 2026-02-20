@@ -84,7 +84,7 @@ local columns = {
             if not module or module:getUsagePercent() == nil then
                 return { text = "0.000 /min", color = colors.gray }
             end
-            local fuelUsage = (module:getUsagePercent()/100) * 1.875 -- 1.875 nuclear fuel per module
+            local fuelUsage = 1.875 -- 1.875 nuclear fuel per module
             return { text = fuelUsage ..  " /min", color = colors.lightblue }
         end
     }
