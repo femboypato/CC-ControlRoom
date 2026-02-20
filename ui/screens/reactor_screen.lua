@@ -1,4 +1,4 @@
-os.loadAPI("ui/components/generator_indicator")
+os.loadAPI("ui/components/generators_table")
 os.loadAPI("ui/screens/base_screen")
 
 ReactorScreen = {}
@@ -10,6 +10,7 @@ function ReactorScreen:new(monitor, title)
     
     o.monitor = monitor
     o.base = base_screen.BaseScreen:new(monitor, title)
+    o.table = generators_table.GeneratorsTable:new()
     return o
 end
 
@@ -17,15 +18,15 @@ function ReactorScreen:render(modules)
     self.monitor:clear()
     self.base:drawBorder()
 
-    -- Indicators config
-    local topY = 4    
+    -- tables config
+    local x          = 4
+    local headerY    = 3
+    local topY       = 5
     local lineHeight = 2
-    local tableWidth = 70
 
+    self.table:drawHeader(self.monitor, x, headerY)
     for i = 1, #modules do
         local yPos = topY + (i - 1) * lineHeight
-        modules[i]:refresh()
-        local indicator = generator_indicator.GeneratorIndicator:new()
-        indicator:draw(self.monitor, 4, yPos, tableWidth, 1, modules[i])
+        self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
     end
 end

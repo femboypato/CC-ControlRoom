@@ -28,8 +28,8 @@ files = {
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/reactor_module.lua"
     },
     {
-        path= "ui/components/generator_indicator",
-        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/components/generator_indicator.lua"
+        path= "ui/components/generators_table",
+        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/components/generators_table.lua"
     },
     {
         path= "ui/screens/base_screen",
