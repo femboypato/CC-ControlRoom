@@ -34,11 +34,6 @@ function ReactorScreen:render(modules)
         local yPos = topY + (i - 1) * lineHeight
         self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
     end
-
-    
-
-    -- divider bottom
-    self.monitor:drawHLine(2, 21, self.monitor:getW() - 2)
-    
+   
 
 end
