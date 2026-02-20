@@ -97,14 +97,6 @@ function GeneratorIndicator:refresh(module)
     self.usagePercent = rawPercent or 0
     self.status = calculateStatus(self.usage, self.total)
     
-    -- debug
-    -- print(string.format("%s: raw(%s/%s) final(%s/%s) -> %s", 
-    --     self.moduleName, 
-    --     tostring(rawUsage), 
-    --     tostring(rawTotal),
-    --     self.usage,
-    --     self.total,
-    --     self.status))
 end
 
 function GeneratorIndicator:draw(monitor, x, y, width, height, module)
@@ -116,19 +108,19 @@ function GeneratorIndicator:draw(monitor, x, y, width, height, module)
     local percentText = formatUsagePercent(self.usagePercent)
     local usageText = utils.humanizeNumber(self.usage)
     
-    -- columns width
-    local iconWidth = #statusIcon
-    local nameWidth = math.min(#self.moduleName, width - iconWidth - 8)
-    local percentWidth = 5
-    local usageWidth = width - iconWidth - nameWidth - percentWidth - 4
-    
+    -- column start positions
+    local iconWidth  = 7             
+    local colName    = x + iconWidth + 1
+    local colPercent = x + width - 12
+    local colUsage   = x + width - 6
+
     -- Status icon
     monitor:drawBox(x, y, iconWidth, height, statusColor, colors.white, true)
     monitor:drawText(x + 1, y + math.floor((height - 1) / 2), statusIcon, colors.white)
     -- Module name
-    monitor:drawText(x + iconWidth + 1, y, self.moduleName, colors.white)
+    monitor:drawText(colName, y, self.moduleName, colors.white)
     -- Usage percentage
-    monitor:drawText(x + iconWidth + nameWidth + 2, y, percentText, colors.lightGray)
+    monitor:drawText(colPercent, y, percentText, colors.lightGray)
     -- Formatted usage value
-    monitor:drawText(x + usageWidth, y, usageText, colors.gray)
+    monitor:drawText(colUsage, y, usageText, colors.gray)
 end
