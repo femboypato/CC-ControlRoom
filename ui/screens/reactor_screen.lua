@@ -18,7 +18,7 @@ end
 function ReactorScreen:render(modules)
     self.monitor:clear()
     self.base:drawBorder()
-    self.monitor:drawHLine(2, 22, self.monitor:getW() - 2, colors.white)
+    self.monitor:drawHLine(2, 40, self.monitor:getW() - 2, colors.white)
 
     -- tables config
     local x          = 6
