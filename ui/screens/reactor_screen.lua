@@ -18,6 +18,7 @@ end
 function ReactorScreen:render(modules)
     self.monitor:clear()
     self.base:drawBorder()
+    self.monitor:drawHLine(2, 22, self.monitor:getW() - 2, colors.white)
 
     -- tables config
     local x          = 6
@@ -33,10 +34,6 @@ function ReactorScreen:render(modules)
     for i = 1, 14 do
         local yPos = topY + (i - 1) * lineHeight
         self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
-    end
-
-    self.monitor:drawHLine(2, 22, self.monitor:getW() - 2, colors.white)
-    self.monitor:setBackgroundColor(colors.black)
-   
+    end   
 
 end
