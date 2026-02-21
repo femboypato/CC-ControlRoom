@@ -2,6 +2,7 @@
 os.loadAPI("lib/button")
 os.loadAPI("lib/utils")
 os.loadAPI("lib/reactor_module")
+os.loadAPI("lib/module_manager")
 os.loadAPI("lib/monitor")
 -- UI Elements
 os.loadAPI("ui/screens/reactor_screen")
@@ -24,11 +25,14 @@ function init()
     button.clearTable()
     monitor1:clear()
     monitor1:drawTextCenter(0, 0, monitor1:getW() / 2 - 1, "Loading...")
+    
+    --- modules
     for i = 1, 14 do
         local target = modules[i]:getTarget()
         local targetInfo = target:getId() or "No target"
         print("Created " .. modules[i]:getName() .. " with target: " .. targetInfo)
     end
+    moduleManager = module_manager.ModuleManager:new(14)
 
     -- cache initial data
     for i = 1, 20 do
