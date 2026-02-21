@@ -21,7 +21,9 @@ end
 
 function ModuleManager:toggleSignal(moduleIndex)
     if moduleIndex >= 1 and moduleIndex <= self.numModules then
+        print("Sending toggle signal to module " .. moduleIndex)
         self.signalStates[moduleIndex] = not self.signalStates[moduleIndex]
+        print("Module " .. moduleIndex .. (self.signalStates[moduleIndex] and " ON" or " OFF"))
         rednet.broadcast(self.signalStates[moduleIndex], "moduleManagerToggle_" .. tostring(self.id))
     end
 end
