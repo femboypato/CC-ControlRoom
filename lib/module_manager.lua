@@ -5,7 +5,7 @@ ModuleManager.__index = ModuleManager
 function ModuleManager:new(numModules)
     local o = {}
     setmetatable(o, self)
-    o.modem = peripheral.find("modem")
+    o.modem = peripheral.wrap("front")
     if o.modem then
         rednet.open("top")
     end
