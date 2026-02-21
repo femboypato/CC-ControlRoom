@@ -7,7 +7,7 @@ function ModuleManager:new(numModules)
     setmetatable(o, self)
     o.modem = peripheral.wrap("front")
     if o.modem then
-        rednet.open("top")
+        rednet.open("front")
     end
 
     o.signalStates = {}
