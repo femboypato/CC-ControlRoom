@@ -2,10 +2,11 @@ ModuleToggle = {}
 ModuleToggle.__index = ModuleToggle
 
 -- init
-function ModuleToggle:new()
+function ModuleToggle:new(moduleId)
     local o = {}
     setmetatable(o, self)
     o.modem = peripheral.find("modem")
+    o.id = moduleId
     o.signalState = false
     if o.modem then
         rednet.open("top")
@@ -18,5 +19,5 @@ function ModuleToggle:toggleSignal()
 end
 
 function ModuleToggle:broadcast()
-    rednet.broadcast(self.signalState, "moduleToggle_" .. tostring(self.modem))
+    rednet.broadcast(self.signalState, "moduleToggle_" .. tostring(self.id))
 end
