@@ -21,17 +21,21 @@ end
 
 function ModuleManager:toggleSignal(moduleIndex)
     if moduleIndex >= 1 and moduleIndex <= self.numModules then
-        print("Sending ".. "moduleManagerToggle_" .. tostring(self.id))
+
+        print("Sending ".. "moduleManagerToggle_" .. tostring(moduleIndex))
         self.signalStates[moduleIndex] = not self.signalStates[moduleIndex]
+
         local success, err = pcall(function()
-            local result = rednet.broadcast(self.signalStates[moduleIndex], "moduleManagerToggle_" .. tostring(self.id))
+            local result = rednet.broadcast(self.signalStates[moduleIndex], "moduleManagerToggle_" .. tostring(moduleIndex))
             if not result then
                 error("rednet.broadcast failed")
             end
         end)
+
         if not success then
             print("[Error] rednet.broadcast: " .. tostring(err))
         end
+
         print("Module " .. moduleIndex .." is ".. (self.signalStates[moduleIndex] and "OFF" or "ON"))
     end
 end
