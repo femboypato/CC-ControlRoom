@@ -83,5 +83,6 @@ function clickEvent()
    while true do
       local myEvent={os.pullEvent("monitor_touch")}
       checkxy(myEvent[3], myEvent[4])
+      sleep(0.5)
    end
 end
