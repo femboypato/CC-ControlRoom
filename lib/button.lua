@@ -2,7 +2,7 @@ local button = {}
 local mon = nil
 
 function setMonitor(monitor)
-   mon = peripheral.wrap(monitor)
+   mon = monitor
 end
 
 function clearTable()
