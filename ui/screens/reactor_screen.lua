@@ -1,5 +1,6 @@
 os.loadAPI("ui/components/generators_table")
 os.loadAPI("ui/screens/base_screen")
+os.loadAPI("lib/button")
 
 ReactorScreen = {}
 ReactorScreen.__index = ReactorScreen
@@ -24,16 +25,20 @@ function ReactorScreen:render(modules)
     local x          = 6
     local headerY    = 4
     local topY       = 6
-    local lineHeight = 2 -- multiplier
+    local lineHeight = 3 -- multiplier
 
     --- table
     self.table:drawHeader(self.monitor, x, headerY)
-    for i = 1, 14 do
+    for i = 1, 12 do
         modules[i]:refresh()
     end
-    for i = 1, 14 do
+    for i = 1, 12 do
         local yPos = topY + (i - 1) * lineHeight
         self.table:drawRow(self.monitor, x, yPos, 1, modules[i])
+
+        -- togglable button
+        local module = modules[i]
+        button.setTable("module_" .. i, function() module:toggle() end, x, x + 34, yPos, yPos)
     end   
 
 end

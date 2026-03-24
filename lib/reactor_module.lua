@@ -16,6 +16,7 @@ function ReactorModule:new(name, targetId, relayId)
     o.name = name
     o.target = create_target.CreateTarget:new(targetId)
     o.relay = redstone_relay.RedstoneRelay:new(relayId)
+    o.relayState = false
     return o
 end
 
@@ -29,6 +30,15 @@ end
 
 function ReactorModule:refresh()
     self.target:refresh(2)
+end
+
+function ReactorModule:toggle()
+    self.relayState = not self.relayState
+    self.relay:setOutput("back", self.relayState)
+end
+
+function ReactorModule:isRelayOn()
+    return self.relayState
 end
 
 function ReactorModule:getTotal()
