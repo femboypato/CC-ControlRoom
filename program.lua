@@ -13,8 +13,10 @@ local monitor2 = monitor.Monitor:new(4)
 
 -- girame unos modules
 local modules = {}
+-- fucking shit relay de mierda
+local relayMap = {5, 7, 8, 9, 10, 11, 12, 6, 13, 14, 15, 16, 17, 18}
 for i = 1, 14 do
-    modules[i] = reactor_module.ReactorModule:new("Module " .. i, i, i)
+    modules[i] = reactor_module.ReactorModule:new("Module " .. i, i, relayMap[i])
 end
 
 -- screens
