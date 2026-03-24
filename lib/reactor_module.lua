@@ -34,7 +34,9 @@ end
 
 function ReactorModule:toggle()
     self.relayState = not self.relayState
-    self.relay:setOutput("back", self.relayState)
+    print("[Module] " .. self.name .. " -> " .. (self.relayState and "ON" or "OFF"))
+    local ok = self.relay:setOutput("back", self.relayState)
+    print("[Module] relay response: " .. tostring(ok))
 end
 
 function ReactorModule:isRelayOn()

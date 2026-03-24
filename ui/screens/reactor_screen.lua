@@ -13,6 +13,7 @@ function ReactorScreen:new(monitor, title)
     o.monitor = monitor
     o.base = base_screen.BaseScreen:new(monitor, title)
     o.table = generators_table.GeneratorsTable:new()
+    button.setMonitor(monitor.mon)
     return o
 end
 
@@ -25,7 +26,7 @@ function ReactorScreen:render(modules)
     local x          = 6
     local headerY    = 4
     local topY       = 6
-    local lineHeight = 3 -- multiplier
+    local lineHeight = 2 -- multiplier
 
     --- table
     self.table:drawHeader(self.monitor, x, headerY)
@@ -38,7 +39,8 @@ function ReactorScreen:render(modules)
 
         -- togglable button
         local module = modules[i]
-        button.setTable("module_" .. i, function() module:toggle() end, x, x + 34, yPos, yPos)
+        local toggleW = generators_table.GeneratorsTable.TOGGLE_COL_WIDTH
+        button.setTable("module_" .. i, function() module:toggle() end, x, x + toggleW - 1, yPos, yPos)
     end   
 
 end

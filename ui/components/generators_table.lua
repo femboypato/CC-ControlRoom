@@ -40,17 +40,30 @@ local function formatUsagePercent(percent)
     else return string.format("%d%%", math.floor(percent * 100)) end
 end
 
+local TOGGLE_COL_WIDTH = 10
 ---- columns ----
 local columns = {
     {
+        header = "",
+        width = TOGGLE_COL_WIDTH,
+        value = function(module)
+            local on = module:isRelayOn()
+            return {
+                text = on and " ON " or " OFF",
+                color = colors.black,
+                bgColor = on and colors.lime or colors.red,
+                isToggle = true
+            }
+        end
+    },
+    {
         header = "Status",
-        width = 35,
+        width = 20,
         value = function(module)
             local status = calculateStatus(module)
             return {
                 text = iconMap[status] or iconMap[STATUS.UNKNOWN],
-                color = colorMap[status] or colors.gray,
-                isStatus = true
+                color = colorMap[status] or colors.gray
             }
         end
     },
@@ -94,6 +107,7 @@ local columns = {
 ---- GeneratorsTable table ----
 GeneratorsTable = {}
 GeneratorsTable.__index = GeneratorsTable
+GeneratorsTable.TOGGLE_COL_WIDTH = TOGGLE_COL_WIDTH
 
 function GeneratorsTable:new()
     local o = {}
@@ -114,9 +128,8 @@ function GeneratorsTable:drawRow(monitor, x, y, height, module)
     for _, col in ipairs(columns) do
         local cell = col.value(module)
 
-        if cell.isStatus then
-            monitor:drawBox(cursorX, y, col.width, height, cell.color, colors.white, true)
-            monitor:drawText(cursorX + 2, y, cell.text, colors.white)
+        if cell.isToggle then
+            monitor:drawText(cursorX, y, cell.text, cell.color, cell.bgColor)
         else
             monitor:drawText(cursorX, y, cell.text, cell.color)
         end

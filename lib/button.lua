@@ -1,5 +1,9 @@
 local button = {}
-local mon = peripheral.find("monitor")
+local mon = nil
+
+function setMonitor(monitor)
+   mon = peripheral.wrap(monitor)
+end
 
 function clearTable()
    button = {}
