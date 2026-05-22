@@ -16,7 +16,7 @@ function ReactorModule:new(name, targetId, relayId)
     o.name = name
     o.target = create_target.CreateTarget:new(targetId)
     o.relay = redstone_relay.RedstoneRelay:new(relayId)
-    o.relayState = false
+    o.relayState = settings.get("relay." .. name, false)
     return o
 end
 
@@ -37,6 +37,8 @@ function ReactorModule:toggle()
     print("[Module] " .. self.name .. " -> " .. (self.relayState and "ON" or "OFF"))
     local ok = self.relay:setOutput("back", self.relayState)
     print("[Module] relay response: " .. tostring(ok))
+    settings.set("relay." .. self.name, self.relayState)
+    settings.save()
 end
 
 function ReactorModule:isRelayOn()
