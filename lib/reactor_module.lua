@@ -17,6 +17,7 @@ function ReactorModule:new(name, targetId, relayId)
     o.target = create_target.CreateTarget:new(targetId)
     o.relay = redstone_relay.RedstoneRelay:new(relayId)
     o.relayState = settings.get("relay." .. name, false)
+    o.relay:setOutput("back", o.relayState)
     return o
 end
 
