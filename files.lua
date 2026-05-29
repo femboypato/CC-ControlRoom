@@ -39,8 +39,4 @@ files = {
         path= "ui/screens/reactor_screen",
         url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/ui/screens/reactor_screen.lua"
     },
-    {
-        path= "lib/module_manager",
-        url = "https://raw.githubusercontent.com/femboypato/CC-ControlRoom/main/lib/module_manager.lua"
-    },
 }
